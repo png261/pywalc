@@ -1,0 +1,26 @@
+section#wallpaper #gallery{
+	display:grid;
+	grid-template-columns: repeat(3,auto);
+	width:fit-content;
+	gap:10px;
+}
+
+section#wallpaper #gallery .gallery_picture{
+	width:75px;
+	height:75px;
+	border:2px solid black;
+	display:block;
+	background-size:cover;
+}
+
+section#wallpaper #gallery .gallery_picture.active{
+	border:2px solid red;
+}
+
+
+section#colors{
+	display:grid;
+	grid-template-columns: repeat(4,auto);
+	gap: 10px;
+	width:fit-content;
+}

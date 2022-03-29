@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/png/.wallpaper/wallhaven-6ozdm6.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0c0c17",
+        "foreground": "#c9e4f4",
+        "cursor": "#c9e4f4"
+    },
+    "colors": {
+        "color0": "#0c0c17",
+        "color1": "#3D4AB3",
+        "color2": "#5A6994",
+        "color3": "#7194BD",
+        "color4": "#6E9BE4",
+        "color5": "#968780",
+        "color6": "#96ABF5",
+        "color7": "#c9e4f4",
+        "color8": "#8c9faa",
+        "color9": "#3D4AB3",
+        "color10": "#5A6994",
+        "color11": "#7194BD",
+        "color12": "#6E9BE4",
+        "color13": "#968780",
+        "color14": "#96ABF5",
+        "color15": "#c9e4f4"
+    }
+}

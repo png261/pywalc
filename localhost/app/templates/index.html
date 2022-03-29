@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Pwy</h1>
+
+<section id="options">
+	<label for="">save on change</label>
+	<input type="checkbox" name="update_on_change" checked/>
+</section>
+
+<section id="wallpaper">
+	<div id="gallery"> 
+	</div>
+</section>
+
+<section id="theme">
+	<select name="dark">
+	</select>
+	<select name="light">
+	</select>
+</section>
+
+
+<section id="colors">
+	<input type="color" name="color0" value=""/>
+	<input type="color" name="color1" value=""/>
+	<input type="color" name="color2" value=""/>
+	<input type="color" name="color3" value=""/>
+	<input type="color" name="color4" value=""/>
+	<input type="color" name="color5" value=""/>
+	<input type="color" name="color6" value=""/>
+	<input type="color" name="color7" value=""/>
+	<input type="color" name="color8" value=""/>
+	<input type="color" name="color9" value=""/>
+	<input type="color" name="color10" value=""/>
+	<input type="color" name="color11" value=""/>
+	<input type="color" name="color12" value=""/>
+	<input type="color" name="color13" value=""/>
+	<input type="color" name="color14" value=""/>
+	<input type="color" name="color15" value=""/>
+</section>
+
+<button id="changeAll">Change</button>
+<button id="reset">Reset</button>
+{% endblock%}
+
