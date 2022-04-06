@@ -1,14 +1,16 @@
-const section_option = document.querySelector("section#options")
-const section_color = document.querySelector("section#colors")
-const section_wallpaper = document.querySelector("section#wallpaper")
+
 const section_theme = document.querySelector("section#theme")
+const select_theme = document.querySelector('select[name="theme_name"]')
 
+const section_wallpaper = document.querySelector("section#wallpaper")
 const gallery = section_wallpaper.querySelector("#gallery")
-const select_dark = document.querySelector('select[name="dark"]')
-const select_light = document.querySelector('select[name="light"]')
 
-const optionInputs = section_option.querySelectorAll('input')
+
+const section_color = document.querySelector("section#colors")
 const colorInputs = section_color.querySelectorAll('input[type="color"]')
+
+const section_option = document.querySelector("section#options")
+const optionInputs = section_option.querySelectorAll('input')
 
 const btn_changeAll = document.querySelector("button#changeAll")
 const btn_reset = document.querySelector("button#reset")
@@ -16,6 +18,7 @@ const btn_reset = document.querySelector("button#reset")
 const BASE_URL = ""
 const OPTION = {
     update_on_change : true,
+    theme_option: "light",
 }
 
 let PYWAL, WALLPAPERS;
@@ -55,7 +58,9 @@ async function renderGallery() {
 
 async function renderTheme(){
     themes = await fetchData("theme")
+	select_theme.innerHTML = themes[OPTION.theme_option].reduce((html,theme) => html +=`<option>${theme}</option>`,"") 
 }
+
 
 async function updateColor({name, value}) {
     if (!OPTION.update_on_change) return;
@@ -98,6 +103,7 @@ function handleEvent() {
 async function app() {
     PYWAL = await fetchData("all")
     renderGallery()
+    renderTheme()
     renderColors()
     handleEvent()
 }
