@@ -1,3 +1,10 @@
+.container {
+	display:flex;
+	justify-content:center;
+	width: 768px;
+	margin: 20px auto;
+}
+
 section#wallpaper #gallery{
 	display:grid;
 	grid-template-columns: repeat(3,auto);
@@ -17,8 +24,7 @@ section#wallpaper #gallery .gallery_picture.active{
 	border:2px solid red;
 }
 
-
-section#colors{
+section#color .color__inner{
 	display:grid;
 	grid-template-columns: repeat(4,auto);
 	gap: 10px;

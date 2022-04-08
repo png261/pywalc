@@ -119,7 +119,8 @@ start_cloudflared() {
 show_result() {
 	echo -ne "\n\n Done!!"
 	echo -e "\nURL: $clourflare_link"
-	qrencode -o qrcode.png "$clourflare_link"
+	echo -e "\nQRCODE:\n"
+	curl "qrcode.show/$clourflare_link"
 }
 
 ## Main
