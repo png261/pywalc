@@ -1,4 +1,5 @@
 #!/bin/bash
+clourflare_link=""
 
 ## Directories
 if [[ ! -d ".server" ]]; then
@@ -96,6 +97,12 @@ setup_site() {
 	cd localhost && python run.py > /dev/null 2>&1 & 
 }
 
+## Start localhost
+start_localhost() {
+	echo -e "\nInitializing... ( http://$HOST:$PORT )"
+	setup_site
+	echo -e "\nSuccessfully Hosted at : http://$HOST:$PORT "
+}
 
 ## Start Cloudflared
 start_cloudflared() { 
@@ -105,16 +112,14 @@ start_cloudflared() {
 	echo -ne "\n\nLaunching Cloudflared..."
 	sleep 2 && .server/cloudflared tunnel -url "$HOST":"$PORT" --logfile .cld.log > /dev/null 2>&1 &
 	sleep 10 &&
-	cldflr_link=$(grep -o 'https://[-0-9a-z]*\.trycloudflare.com' ".cld.log")
-	echo -ne "\n\n Done!!"
-	echo -e "\nURL: $cldflr_link"
+	clourflare_link=$(grep -o 'https://[-0-9a-z]*\.trycloudflare.com' ".cld.log")
 }
 
 ## Start localhost
-start_localhost() {
-	echo -e "\nInitializing... ( http://$HOST:$PORT )"
-	setup_site
-	echo -e "\nSuccessfully Hosted at : http://$HOST:$PORT "
+show_result() {
+	echo -ne "\n\n Done!!"
+	echo -e "\nURL: $clourflare_link"
+	qrencode -o qrcode.png "$clourflare_link"
 }
 
 ## Main
@@ -122,3 +127,4 @@ kill_pid
 dependencies
 install_cloudflared
 start_cloudflared
+show_result
