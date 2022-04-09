@@ -3,9 +3,8 @@ const colorInputs = section_color.querySelectorAll('input[type="color"]')
 const resetBtn = document.querySelector("button#reset")
 
 import DATA,{updateData} from "./data.js"
-console.log({DATA})
 
-const updateColor = async function ({name, value}) {
+const update = async function ({name, value}) {
     if (!DATA.options.update_on_change) return;
 
     DATA.pywal.colors[name] = value
@@ -18,36 +17,30 @@ const updateColor = async function ({name, value}) {
     return result
 }
 
-const renderColor = async function () {
+const render = async function () {
     Object.entries(DATA.pywal.colors).forEach(([colorName,colorValue]) => {
         const colorInput = section_color.querySelector(`input[name="${colorName}"]`)
         colorInput.value = colorValue
     });
 }
 
-const handleColor = async function () {
-	renderColor()
-	events()
-}
-
-const resetColor = async function() {
+const reset = async function() {
 	await fetch("reset")
-	updateData()
-    renderColor()
+	await updateData()
+    render()
 }
 
-const events = function () {
+const handleEvents = function () {
     colorInputs.forEach( inputEl => {inputEl.addEventListener('input', function() {
 		let name = this.name
 		let value = this.value
-		updateColor({name, value})
+		update({name, value})
 	})});
-    resetBtn.addEventListener('click', resetColor)
+    resetBtn.addEventListener('click', reset)
 }
 
-export default handleColor
-
 export {
-	updateColor,
-	resetColor
+	update,
+	render,
+	handleEvents
 }

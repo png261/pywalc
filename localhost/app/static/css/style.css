@@ -5,14 +5,14 @@
 	margin: 20px auto;
 }
 
-section#wallpaper #gallery{
+section#wallpaper .wallpaper__gallery{
 	display:grid;
 	grid-template-columns: repeat(3,auto);
 	width:fit-content;
 	gap:10px;
 }
 
-section#wallpaper #gallery .gallery_picture{
+section#wallpaper .wallpaper__picture{
 	width:75px;
 	height:75px;
 	border:2px solid black;
@@ -20,7 +20,7 @@ section#wallpaper #gallery .gallery_picture{
 	background-size:cover;
 }
 
-section#wallpaper #gallery .gallery_picture.active{
+section#wallpaper .wallpaper__picture.active{
 	border:2px solid red;
 }
 
