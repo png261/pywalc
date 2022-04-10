@@ -1,18 +1,23 @@
 .container {
 	display:flex;
 	justify-content:center;
-	width: 768px;
+	max-width: 768px;
 	margin: 20px auto;
 }
 
-section#wallpaper .wallpaper__gallery{
+/* THEME */
+
+/* END THEME */
+
+/* WALLPAPER */
+.wallpaper__gallery{
 	display:grid;
 	grid-template-columns: repeat(3,auto);
 	width:fit-content;
 	gap:10px;
 }
 
-section#wallpaper .wallpaper__picture{
+.wallpaper__picture{
 	width:75px;
 	height:75px;
 	border:2px solid black;
@@ -20,13 +25,24 @@ section#wallpaper .wallpaper__picture{
 	background-size:cover;
 }
 
-section#wallpaper .wallpaper__picture.active{
+.wallpaper__picture.active{
 	border:2px solid red;
 }
+/* END WALLPAPER */
 
-section#color .color__inner{
+/* COLOR */
+.color__inner{
 	display:grid;
-	grid-template-columns: repeat(4,auto);
-	gap: 10px;
-	width:fit-content;
+	grid-template-columns: repeat(8,4rem);
+	justify-content:center;
+	gap: 5px;
+	width:100%
 }
+
+.color__input {
+    border: none;
+	padding:0;
+	width:4rem;
+	height:4rem;
+}
+/* END COLOR */

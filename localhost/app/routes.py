@@ -26,13 +26,25 @@ def home():
 @app.route("/theme",methods=["GET"])
 def theme():
     dark_themes = os.listdir(os.path.join(MODULE_DIR, "colorschemes", "dark"))
+    dark_themes  = [theme.split('.')[0] for theme in dark_themes]
+
     light_themes = os.listdir(os.path.join(MODULE_DIR, "colorschemes", "light"))
+    light_themes  = [theme.split('.')[0] for theme in light_themes]
+
     return json.dumps(
         {
             "dark":dark_themes,
             "light":light_themes
         }
     ) 
+
+@app.route("/theme",methods=["POST"])
+def changeTheme():
+    theme = json.loads(request.data)
+    os.system("wal --theme " + theme)  
+    colors = pywal.colors.file(os.path.join(CACHE_DIR,"colors.json"))
+    updateColor(colors)
+    return json.dumps({"sucess": True, "message": "colors has been update"})
 
 
 @app.route("/all", methods=["GET"])
@@ -75,18 +87,3 @@ def changeWallpaper():
 
     return json.dumps(wallpaper)
 
-
-# @app.route('/colors',methods = ['GET'])
-# def getColors():
-#     info = pywal.colors.file("/home/png/.cache/wal/colors.json")
-#     return json.dumps(info["colors"])
-
-# @app.route('/wallpaper',methods = ['GET'])
-# def getWallpaper():
-#     info = pywal.colors.file("/home/png/.cache/wal/colors.json")
-#     return json.dumps(info["wallpaper"])
-
-# @app.route('/specials',methods = ['GET'])
-# def getSpecial():
-#     info = pywal.colors.file("/home/png/.cache/wal/colors.json")
-#     return json.dumps(info["special"])

@@ -13,8 +13,6 @@ const update = async function ({name, value}) {
         headers : {'Content-Type' : 'application/json'},
         body : JSON.stringify(DATA.pywal)
     });
-    const result = await response.json();
-    return result
 }
 
 const render = async function () {
