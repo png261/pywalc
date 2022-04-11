@@ -15,8 +15,9 @@ async function render(){
 }
 
 function events(){
-	Color.events()
+	Wallpaper.events()
 	Theme.events()
+	Color.events()
 
     optionInputs.forEach( inputEl => { inputEl.addEventListener('change', function() {
 		const option_name = this.name

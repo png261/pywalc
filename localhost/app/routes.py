@@ -7,8 +7,8 @@ from flask import request
 import shutil
 
 HOME = pywal.settings.HOME
-CACHE_DIR =pywal.settings.CACHE_DIR
-MODULE_DIR =pywal.settings.MODULE_DIR
+CACHE_DIR = pywal.settings.CACHE_DIR
+MODULE_DIR = pywal.settings.MODULE_DIR
 CONF_DIR = pywal.settings.CONF_DIR
 
 shutil.copy(os.path.join(CACHE_DIR,"colors.json"), "backup.json")
@@ -22,6 +22,30 @@ def reload(data):
 @app.route("/")
 def home():
     return render_template("index.html")
+
+@app.route("/all", methods=["GET"])
+def getAll():
+    info = pywal.colors.file(os.path.join(CACHE_DIR,"colors.json"))
+    return json.dumps(info)
+
+@app.route("/reset", methods=["GET"])
+def reset():
+    backup = open("backup.json")
+    data = json.load(backup)
+    reload(data)
+
+    return json.dumps({"sucess": True, "message": "colors has been update"})
+
+
+@app.route("/color", methods=[ "POST"])
+def changeColor():
+    if request.method == "POST":
+        data = pywal.colors.file(os.path.join(CACHE_DIR,"colors.json"))
+        colors = request.get_json()
+        data['colors'] = colors
+        reload(data)
+
+        return json.dumps({"sucess": True, "message": "colors has been update"})
 
 @app.route("/theme",methods=["GET"])
 def theme():
@@ -42,35 +66,17 @@ def theme():
 def changeTheme():
     theme = request.get_json()
     option = "" if theme['dark'] else "-l"
-    command = "wal " + option + " --theme " + theme['name']
+    command = "wal -q " + option + " --theme " + theme['name']
     os.system(command)  
     data = pywal.colors.file(os.path.join(CACHE_DIR,"colors.json"))
     reload(data)
     return json.dumps({"sucess": True, "message": "colors has been update"})
 
-
-@app.route("/all", methods=["GET"])
-def getAll():
-    info = pywal.colors.file(os.path.join(CACHE_DIR,"colors.json"))
-    return json.dumps(info)
-
-@app.route("/color", methods=[ "POST"])
-def changeColor():
-    if request.method == "POST":
-        data = pywal.colors.file(os.path.join(CACHE_DIR,"colors.json"))
-        colors = request.get_json()
-        data['colors'] = colors
-        reload(data)
-
-        return json.dumps({"sucess": True, "message": "colors has been update"})
-
-
-@app.route("/reset", methods=["GET"])
-def reset():
-    backup = open("backup.json")
-    data = json.load(backup)
-    reload(data)
-
+@app.route('/uploadWallpaper', methods=['POST'])
+def uploadWallpaper():
+    files = request.files.getlist("images")
+    for file in files:
+        file.save('/home/png/code/pwy/localhost/app/static/wallpapers/' + file.filename.split("/")[1])
     return json.dumps({"sucess": True, "message": "colors has been update"})
 
 
