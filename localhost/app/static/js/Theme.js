@@ -6,11 +6,16 @@ const theme_select = section.querySelector('.theme__select select[name="theme_na
 const theme_option = section.querySelectorAll('.theme__option input[name="dark"]')
 
 async function change(name){
-    const response = await fetch("theme", {
+    await fetch("theme", {
         method : 'POST',
         headers : {'Content-Type' : 'application/json'},
-        body : JSON.stringify({name, dark})
+        body : JSON.stringify({
+			name,
+			dark:DATA.theme.dark
+		})
     });
+	await fetchColor()
+	await Color.render()
 }
 
 async function render(){
@@ -20,9 +25,8 @@ async function render(){
 
 async function events(){
 	theme_select.addEventListener("change", async function() {
-		await change(this.value)
-		await fetchColor()
-		await Color.render()
+		console.log("test")
+		change(this.value)
 	}) 
 
     theme_option.forEach(option => {

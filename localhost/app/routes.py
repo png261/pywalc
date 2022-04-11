@@ -42,8 +42,10 @@ def theme():
 def changeTheme():
     theme = request.get_json()
     option = "" if theme['dark'] else "-l"
-    command = "wal -q " + option + " --theme " + theme['name']
+    command = "wal " + option + " --theme " + theme['name']
     os.system(command)  
+    data = pywal.colors.file(os.path.join(CACHE_DIR,"colors.json"))
+    reload(data)
     return json.dumps({"sucess": True, "message": "colors has been update"})
 
 
@@ -82,9 +84,7 @@ def getWallpaper():
 def changeWallpaper():
     wallpaper = request.get_json()
     path = os.path.join("./app/static/wallpapers", wallpaper)
-    print(path)
     image = pywal.image.get(path)
-    print(image)
     pywal.wallpaper.change(image)
 
     return json.dumps(wallpaper)
