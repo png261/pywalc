@@ -1932,3 +1932,68 @@
 {"level":"error","error":"Unauthorized: Failed to get tunnel","connIndex":2,"time":"2022-04-10T16:00:58Z","message":"Connection terminated"}
 {"level":"error","error":"Unauthorized: Failed to get tunnel","connIndex":1,"time":"2022-04-10T16:01:00Z","message":"Connection terminated"}
 {"level":"error","error":"Unauthorized: Failed to get tunnel","connIndex":3,"time":"2022-04-10T16:01:01Z","message":"Connection terminated"}
+{"level":"error","connIndex":1,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:41Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":1,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:41Z","message":"Register tunnel error from server side"}
+{"level":"error","connIndex":3,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:41Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":3,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:41Z","message":"Register tunnel error from server side"}
+{"level":"error","connIndex":0,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:41Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":0,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:41Z","message":"Register tunnel error from server side"}
+{"level":"error","connIndex":2,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:41Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":2,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:41Z","message":"Register tunnel error from server side"}
+{"level":"info","connIndex":2,"time":"2022-04-10T16:04:42Z","message":"Retrying connection in up to 2s seconds"}
+{"level":"info","connIndex":0,"time":"2022-04-10T16:04:42Z","message":"Retrying connection in up to 2s seconds"}
+{"level":"info","connIndex":3,"time":"2022-04-10T16:04:42Z","message":"Retrying connection in up to 2s seconds"}
+{"level":"info","connIndex":1,"time":"2022-04-10T16:04:42Z","message":"Retrying connection in up to 2s seconds"}
+{"level":"error","connIndex":2,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:43Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":2,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:43Z","message":"Register tunnel error from server side"}
+{"level":"info","connIndex":2,"time":"2022-04-10T16:04:43Z","message":"Retrying connection in up to 4s seconds"}
+{"level":"error","connIndex":3,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:43Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":3,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:43Z","message":"Register tunnel error from server side"}
+{"level":"info","connIndex":3,"time":"2022-04-10T16:04:43Z","message":"Retrying connection in up to 4s seconds"}
+{"level":"error","connIndex":1,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:44Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":1,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:44Z","message":"Register tunnel error from server side"}
+{"level":"info","connIndex":1,"time":"2022-04-10T16:04:44Z","message":"Retrying connection in up to 4s seconds"}
+{"level":"error","connIndex":0,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:44Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":0,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:44Z","message":"Register tunnel error from server side"}
+{"level":"info","connIndex":0,"time":"2022-04-10T16:04:44Z","message":"Retrying connection in up to 4s seconds"}
+{"level":"error","connIndex":1,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:45Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":1,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:45Z","message":"Register tunnel error from server side"}
+{"level":"info","connIndex":1,"time":"2022-04-10T16:04:45Z","message":"Retrying connection in up to 8s seconds"}
+{"level":"error","connIndex":0,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:45Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":0,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:45Z","message":"Register tunnel error from server side"}
+{"level":"info","connIndex":0,"time":"2022-04-10T16:04:45Z","message":"Retrying connection in up to 8s seconds"}
+{"level":"error","connIndex":2,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:46Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":2,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:46Z","message":"Register tunnel error from server side"}
+{"level":"info","connIndex":2,"time":"2022-04-10T16:04:46Z","message":"Retrying connection in up to 8s seconds"}
+{"level":"error","connIndex":0,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:46Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":0,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:46Z","message":"Register tunnel error from server side"}
+{"level":"info","connIndex":0,"time":"2022-04-10T16:04:46Z","message":"Retrying connection in up to 16s seconds"}
+{"level":"error","connIndex":3,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:47Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":3,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:47Z","message":"Register tunnel error from server side"}
+{"level":"info","connIndex":3,"time":"2022-04-10T16:04:47Z","message":"Retrying connection in up to 8s seconds"}
+{"level":"error","connIndex":0,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:48Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":0,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:48Z","message":"Register tunnel error from server side"}
+{"level":"info","connIndex":0,"time":"2022-04-10T16:04:48Z","message":"Retrying connection in up to 32s seconds"}
+{"level":"error","connIndex":1,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:50Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":1,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:50Z","message":"Register tunnel error from server side"}
+{"level":"info","connIndex":1,"time":"2022-04-10T16:04:50Z","message":"Retrying connection in up to 16s seconds"}
+{"level":"error","connIndex":1,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:53Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":1,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:53Z","message":"Register tunnel error from server side"}
+{"level":"info","connIndex":1,"time":"2022-04-10T16:04:53Z","message":"Retrying connection in up to 32s seconds"}
+{"level":"error","connIndex":2,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:53Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":2,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:53Z","message":"Register tunnel error from server side"}
+{"level":"info","connIndex":2,"time":"2022-04-10T16:04:53Z","message":"Retrying connection in up to 16s seconds"}
+{"level":"error","connIndex":3,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:54Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":3,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:54Z","message":"Register tunnel error from server side"}
+{"level":"info","connIndex":3,"time":"2022-04-10T16:04:54Z","message":"Retrying connection in up to 16s seconds"}
+{"level":"error","connIndex":2,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:57Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":2,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:57Z","message":"Register tunnel error from server side"}
+{"level":"info","connIndex":2,"time":"2022-04-10T16:04:57Z","message":"Retrying connection in up to 32s seconds"}
+{"level":"error","connIndex":3,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:59Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":3,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-10T16:04:59Z","message":"Register tunnel error from server side"}
+{"level":"info","connIndex":3,"time":"2022-04-10T16:04:59Z","message":"Retrying connection in up to 32s seconds"}
+{"level":"error","error":"Unauthorized: Failed to get tunnel","connIndex":1,"time":"2022-04-10T16:05:06Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Failed to get tunnel","connIndex":2,"time":"2022-04-10T16:05:16Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Failed to get tunnel","connIndex":0,"time":"2022-04-10T16:05:16Z","message":"Connection terminated"}
+{"level":"error","error":"Unauthorized: Failed to get tunnel","connIndex":3,"time":"2022-04-10T16:05:26Z","message":"Connection terminated"}
+{"level":"info","time":"2022-04-10T16:06:50Z","message":"Initiating graceful shutdown due to signal terminated ..."}

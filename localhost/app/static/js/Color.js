@@ -2,21 +2,21 @@ const container = document.querySelector("section#color")
 const color_input = container.querySelectorAll('input[type="color"]')
 const reset_btn = document.querySelector("button#reset")
 
-import DATA,{updateData} from "./data.js"
+import DATA,{fetchColor} from "./data.js"
 
 const update = async function ({name, value}) {
     if (!DATA.options.update_on_change) return;
 
-    DATA.pywal.colors[name] = value
+    DATA.color[name] = value
     const response = await fetch(`color`, {
         method : 'POST',
         headers : {'Content-Type' : 'application/json'},
-        body : JSON.stringify(DATA.pywal)
+        body : JSON.stringify(DATA.color)
     });
 }
 
 const render = async function () {
-    Object.entries(DATA.pywal.colors).forEach(([colorName,colorValue]) => {
+    Object.entries(DATA.color).forEach(([colorName,colorValue]) => {
         const colorInput = container.querySelector(`input[name="${colorName}"]`)
         colorInput.value = colorValue
     });
@@ -24,7 +24,7 @@ const render = async function () {
 
 const reset = async function() {
 	await fetch("reset")
-	await updateData()
+	await fetchColor()
     render()
 }
 

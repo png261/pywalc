@@ -1,4 +1,4 @@
-import DATA,{updateData} from "./data.js"
+import DATA from "./data.js"
 
 const container = document.querySelector("section#wallpaper")
 const gallery = container.querySelector(".wallpaper__gallery")
@@ -17,10 +17,7 @@ async function change(el, url) {
 window.changeWallpaper = change
 
 async function render() {
-	let response = await fetch("wallpaper")
-    DATA.wallpaper = await response.json()
-    gallery.innerHTML = DATA.wallpaper.reduce(
-        (html, url) => html += `<div onclick="changeWallpaper(this,'${url}')" class="wallpaper__picture" style="background-image:url(/static/wallpapers/${url})"> </div>`, "")
+    gallery.innerHTML = DATA.wallpaper.list.reduce((html, url) => html += `<div onclick="changeWallpaper(this,'${url}')" class="wallpaper__picture" style="background-image:url(/static/wallpapers/${url})"> </div>`, "")
 }
 
 export {

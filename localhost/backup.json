@@ -1,28 +1,28 @@
 {
-    "wallpaper": "/home/png/.wallpaper/wallhaven-o3ve15.jpg",
+    "wallpaper": "/home/png/.wallpaper/wallhaven-wqv2qx.jpg",
     "alpha": "100",
 
     "special": {
-        "background": "#0f1216",
-        "foreground": "#bdc4cf",
-        "cursor": "#bdc4cf"
+        "background": "#222322",
+        "foreground": "#d8cfc6",
+        "cursor": "#d8cfc6"
     },
     "colors": {
-        "color0": "#0f1216",
-        "color1": "#525C6A",
-        "color2": "#CF923F",
-        "color3": "#366387",
-        "color4": "#65758C",
-        "color5": "#7688A2",
-        "color6": "#7D9EC3",
-        "color7": "#bdc4cf",
-        "color8": "#848990",
-        "color9": "#525C6A",
-        "color10": "#CF923F",
-        "color11": "#366387",
-        "color12": "#65758C",
-        "color13": "#7688A2",
-        "color14": "#7D9EC3",
-        "color15": "#bdc4cf"
+        "color0": "#222322",
+        "color1": "#C0997E",
+        "color2": "#989187",
+        "color3": "#AA9C8C",
+        "color4": "#9FA093",
+        "color5": "#B5A795",
+        "color6": "#B9ADA2",
+        "color7": "#d8cfc6",
+        "color8": "#97908a",
+        "color9": "#C0997E",
+        "color10": "#989187",
+        "color11": "#AA9C8C",
+        "color12": "#9FA093",
+        "color13": "#B5A795",
+        "color14": "#B9ADA2",
+        "color15": "#d8cfc6"
     }
 }

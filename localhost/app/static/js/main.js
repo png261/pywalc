@@ -2,7 +2,7 @@ import * as Color from "./Color.js"
 import * as Theme from "./Theme.js"
 import * as Wallpaper from "./Wallpaper.js"
 
-import DATA,{updateData} from "./data.js"
+import DATA,{initData} from "./data.js"
 
 const section_option = document.querySelector("section#configs")
 const optionInputs = section_option.querySelectorAll('input')
@@ -26,7 +26,7 @@ function events(){
 }
 
 async function app() {
-	await updateData()
+	await initData()
 	await render()
 	await events()
 }

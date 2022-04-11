@@ -13,9 +13,9 @@ CONF_DIR = pywal.settings.CONF_DIR
 
 shutil.copy(os.path.join(CACHE_DIR,"colors.json"), "backup.json")
 
-def updateColor(colors):
-    pywal.export.every(colors)
-    pywal.sequences.send(colors)
+def reload(data):
+    pywal.export.every(data)
+    pywal.sequences.send(data)
     pywal.reload.xrdb()
 
 
@@ -33,17 +33,17 @@ def theme():
 
     return json.dumps(
         {
-            "dark":dark_themes,
-            "light":light_themes
+            "dark": dark_themes,
+            "light": light_themes
         }
     ) 
 
 @app.route("/theme",methods=["POST"])
 def changeTheme():
-    theme = json.loads(request.data)
-    os.system("wal --theme " + theme)  
-    colors = pywal.colors.file(os.path.join(CACHE_DIR,"colors.json"))
-    updateColor(colors)
+    theme = request.get_json()
+    option = "" if theme['dark'] else "-l"
+    command = "wal -q " + option + " --theme " + theme['name']
+    os.system(command)  
     return json.dumps({"sucess": True, "message": "colors has been update"})
 
 
@@ -55,8 +55,10 @@ def getAll():
 @app.route("/color", methods=[ "POST"])
 def changeColor():
     if request.method == "POST":
-        colors = json.loads(request.data)
-        updateColor(colors)
+        data = pywal.colors.file(os.path.join(CACHE_DIR,"colors.json"))
+        colors = request.get_json()
+        data['colors'] = colors
+        reload(data)
 
         return json.dumps({"sucess": True, "message": "colors has been update"})
 
@@ -64,9 +66,9 @@ def changeColor():
 @app.route("/reset", methods=["GET"])
 def reset():
     backup = open("backup.json")
-    colors = json.load(backup)
+    data = json.load(backup)
+    reload(data)
 
-    updateColor(colors)
     return json.dumps({"sucess": True, "message": "colors has been update"})
 
 
@@ -78,7 +80,7 @@ def getWallpaper():
 
 @app.route("/wallpaper", methods=["POST"])
 def changeWallpaper():
-    wallpaper = json.loads(request.data)
+    wallpaper = request.get_json()
     path = os.path.join("./app/static/wallpapers", wallpaper)
     print(path)
     image = pywal.image.get(path)
