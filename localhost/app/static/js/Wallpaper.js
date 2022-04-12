@@ -2,7 +2,7 @@ import DATA,{fetchWallpaper} from "./data.js"
 
 const container = document.querySelector("section#wallpaper")
 const gallery = container.querySelector(".wallpaper__gallery")
-const input_folder = container.querySelector(".wallpaper__folder input")
+const input_folder = container.querySelector('.wallpaper__upload input[type="file"]')
 
 async function change(el, url) {
     gallery.querySelectorAll(".wallpaper__picture.active").forEach(pic => { pic.classList.remove("active") });

@@ -10,6 +10,13 @@
 /* END THEME */
 
 /* WALLPAPER */
+
+.wallpaper__inner{
+	display:grid;
+	grid-template-columns: 1fr;
+	gap:10px;
+}
+
 .wallpaper__gallery{
 	display:grid;
 	grid-template-columns: repeat(3,auto);

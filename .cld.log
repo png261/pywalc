@@ -1,21 +1,21 @@
-{"level":"info","time":"2022-04-11T08:49:12Z","message":"Thank you for trying Cloudflare Tunnel. Doing so, without a Cloudflare account, is a quick way to experiment and try it out. However, be aware that these account-less Tunnels have no uptime guarantee. If you intend to use Tunnels in production you should use a pre-created named tunnel by following: https://developers.cloudflare.com/cloudflare-one/connections/connect-apps"}
-{"level":"info","time":"2022-04-11T08:49:12Z","message":"Requesting new quick Tunnel on trycloudflare.com..."}
-{"level":"info","time":"2022-04-11T08:49:18Z","message":"+--------------------------------------------------------------------------------------------+"}
-{"level":"info","time":"2022-04-11T08:49:18Z","message":"|  Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):  |"}
-{"level":"info","time":"2022-04-11T08:49:18Z","message":"|  https://regard-doe-samples-workflow.trycloudflare.com                                     |"}
-{"level":"info","time":"2022-04-11T08:49:18Z","message":"+--------------------------------------------------------------------------------------------+"}
-{"level":"info","time":"2022-04-11T08:49:18Z","message":"Cannot determine default configuration path. No file [config.yml config.yaml] in [~/.cloudflared ~/.cloudflare-warp ~/cloudflare-warp /etc/cloudflared /usr/local/etc/cloudflared]"}
-{"level":"info","time":"2022-04-11T08:49:18Z","message":"Version 2022.4.0"}
-{"level":"info","time":"2022-04-11T08:49:18Z","message":"GOOS: linux, GOVersion: go1.17.5, GoArch: amd64"}
-{"level":"info","time":"2022-04-11T08:49:18Z","message":"Settings: map[logfile:.cld.log protocol:quic url:127.0.0.1:8080]"}
-{"level":"info","autoupdateFreq":86400000,"time":"2022-04-11T08:49:18Z","message":"Autoupdate frequency is set"}
-{"level":"info","time":"2022-04-11T08:49:18Z","message":"Generated Connector ID: bc5d9e01-12d7-47ee-9942-6620c7b74914"}
-{"level":"info","time":"2022-04-11T08:49:18Z","message":"Initial protocol quic"}
-{"level":"info","time":"2022-04-11T08:49:19Z","message":"Starting metrics server on 127.0.0.1:34099/metrics"}
-{"level":"error","connIndex":0,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-11T08:49:19Z","message":"Failed to serve quic connection"}
-{"level":"error","connIndex":0,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-11T08:49:19Z","message":"Register tunnel error from server side"}
-{"level":"info","connIndex":0,"time":"2022-04-11T08:49:19Z","message":"Retrying connection in up to 2s seconds"}
-{"level":"info","connIndex":0,"location":"SIN","time":"2022-04-11T08:49:20Z","message":"Connection c3979fbe-871f-4c80-9df5-7e60abecb9c3 registered"}
-{"level":"info","connIndex":1,"location":"HKG","time":"2022-04-11T08:49:21Z","message":"Connection 7760818e-726f-4dc6-8c97-4c483c752ed9 registered"}
-{"level":"info","connIndex":2,"location":"SIN","time":"2022-04-11T08:49:22Z","message":"Connection aaf8e08f-f388-4e80-b104-fe4b78ae81fe registered"}
-{"level":"info","connIndex":3,"location":"HKG","time":"2022-04-11T08:49:23Z","message":"Connection 75b3ba17-f595-497f-b04b-142e08568a10 registered"}
+{"level":"info","time":"2022-04-12T10:11:50Z","message":"Thank you for trying Cloudflare Tunnel. Doing so, without a Cloudflare account, is a quick way to experiment and try it out. However, be aware that these account-less Tunnels have no uptime guarantee. If you intend to use Tunnels in production you should use a pre-created named tunnel by following: https://developers.cloudflare.com/cloudflare-one/connections/connect-apps"}
+{"level":"info","time":"2022-04-12T10:11:50Z","message":"Requesting new quick Tunnel on trycloudflare.com..."}
+{"level":"info","time":"2022-04-12T10:11:53Z","message":"+--------------------------------------------------------------------------------------------+"}
+{"level":"info","time":"2022-04-12T10:11:53Z","message":"|  Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):  |"}
+{"level":"info","time":"2022-04-12T10:11:53Z","message":"|  https://warned-swim-quarterly-follows.trycloudflare.com                                   |"}
+{"level":"info","time":"2022-04-12T10:11:53Z","message":"+--------------------------------------------------------------------------------------------+"}
+{"level":"info","time":"2022-04-12T10:11:53Z","message":"Cannot determine default configuration path. No file [config.yml config.yaml] in [~/.cloudflared ~/.cloudflare-warp ~/cloudflare-warp /etc/cloudflared /usr/local/etc/cloudflared]"}
+{"level":"info","time":"2022-04-12T10:11:53Z","message":"Version 2022.4.0"}
+{"level":"info","time":"2022-04-12T10:11:53Z","message":"GOOS: linux, GOVersion: go1.17.5, GoArch: amd64"}
+{"level":"info","time":"2022-04-12T10:11:53Z","message":"Settings: map[logfile:.cld.log protocol:quic url:127.0.0.1:8080]"}
+{"level":"info","time":"2022-04-12T10:11:53Z","message":"Generated Connector ID: dc417ede-acb9-46b3-ab90-58dd5e5f98a3"}
+{"level":"info","autoupdateFreq":86400000,"time":"2022-04-12T10:11:53Z","message":"Autoupdate frequency is set"}
+{"level":"info","time":"2022-04-12T10:11:53Z","message":"Initial protocol quic"}
+{"level":"info","time":"2022-04-12T10:11:53Z","message":"Starting metrics server on 127.0.0.1:43159/metrics"}
+{"level":"error","connIndex":0,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-12T10:11:54Z","message":"Failed to serve quic connection"}
+{"level":"error","connIndex":0,"error":"Unauthorized: Failed to get tunnel","time":"2022-04-12T10:11:54Z","message":"Register tunnel error from server side"}
+{"level":"info","connIndex":0,"time":"2022-04-12T10:11:54Z","message":"Retrying connection in up to 2s seconds"}
+{"level":"info","connIndex":0,"location":"SIN","time":"2022-04-12T10:11:55Z","message":"Connection d2ce16eb-0979-4a67-a9e3-42733c85dbb2 registered"}
+{"level":"info","connIndex":1,"location":"HKG","time":"2022-04-12T10:11:56Z","message":"Connection 2a726067-fafe-4c57-aaef-84486e812e88 registered"}
+{"level":"info","connIndex":2,"location":"SIN","time":"2022-04-12T10:11:57Z","message":"Connection 23d5ceea-26cc-403e-91e1-4a2ff5cf99da registered"}
+{"level":"info","connIndex":3,"location":"HKG","time":"2022-04-12T10:11:58Z","message":"Connection 974294c1-e016-4a86-9348-0c4d1900d419 registered"}

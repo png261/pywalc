@@ -76,7 +76,7 @@ def changeTheme():
 def uploadWallpaper():
     files = request.files.getlist("images")
     for file in files:
-        file.save('/home/png/code/pwy/localhost/app/static/wallpapers/' + file.filename.split("/")[1])
+        file.save('/home/png/code/pwy/localhost/app/static/wallpapers/' + file.filename)
     return json.dumps({"sucess": True, "message": "colors has been update"})
 
 
