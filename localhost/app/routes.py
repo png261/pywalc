@@ -1,4 +1,5 @@
 import pywal
+import uuid
 import json
 import os
 from app import app
@@ -34,7 +35,7 @@ def reset():
     data = json.load(backup)
     reload(data)
 
-    return json.dumps({"sucess": True, "message": "colors has been update"})
+    return json.dumps({"success": True, "message": "colors has been update"})
 
 
 @app.route("/color", methods=[ "POST"])
@@ -45,7 +46,7 @@ def changeColor():
         data['colors'] = colors
         reload(data)
 
-        return json.dumps({"sucess": True, "message": "colors has been update"})
+        return json.dumps({"success": True, "message": "colors has been update"})
 
 @app.route("/theme",methods=["GET"])
 def theme():
@@ -70,14 +71,18 @@ def changeTheme():
     os.system(command)  
     data = pywal.colors.file(os.path.join(CACHE_DIR,"colors.json"))
     reload(data)
-    return json.dumps({"sucess": True, "message": "colors has been update"})
+    return json.dumps({"success": True, "message": "colors has been update"})
 
 @app.route('/uploadWallpaper', methods=['POST'])
 def uploadWallpaper():
     files = request.files.getlist("images")
+    newUrl = []
     for file in files:
-        file.save('/home/png/code/pwy/localhost/app/static/wallpapers/' + file.filename)
-    return json.dumps({"sucess": True, "message": "colors has been update"})
+        filename = str(uuid.uuid4())
+        file.save('/home/png/code/pwy/localhost/app/static/wallpapers/' + filename)
+        newUrl.append(filename)
+    print(newUrl)
+    return json.dumps({"success": True, "newUrl": newUrl})
 
 
 @app.route("/wallpaper", methods=["GET"])

@@ -21,12 +21,15 @@ async function upload([...imgs]) {
 	const formData = new FormData();
 	imgs.map(img => formData.append("images", img))
 
-    await fetch(`uploadWallpaper`, {
+	const respone = await fetch(`uploadWallpaper`, {
         method : 'POST',
         body : formData 
     });
-	await fetchWallpaper()
-	await render()
+	const {success, newUrl} = await respone.json()
+
+	if(success){
+		gallery.innerHTML += newUrl.reduce((html, url) => html += `<div onclick="changeWallpaper(this,'${url}')" class="wallpaper__picture" style="background-image:url(/static/wallpapers/${url})"> </div>`, "")
+	}
 }
 
 async function events() {
