@@ -3,22 +3,24 @@ public_url=""
 HOST='127.0.0.1'
 PORT='8080'
 
+DEFAULT_TUNNEL="cloudflared"
+
 ## Directories
 if [[ ! -d ".server" ]]; then
 	mkdir -p ".server"
 fi
 
 banner(){
-cat <<- EOF
+	cat <<- EOF
 
-	██████╗ ██╗    ██╗██╗   ██╗
-	██╔══██╗██║    ██║╚██╗ ██╔╝
-	██████╔╝██║ █╗ ██║ ╚████╔╝ 
-	██╔═══╝ ██║███╗██║  ╚██╔╝  
-	██║     ╚███╔███╔╝   ██║   
-	╚═╝      ╚══╝╚══╝    ╚═╝   
+		██████╗ ██╗    ██╗██╗   ██╗
+		██╔══██╗██║    ██║╚██╗ ██╔╝
+		██████╔╝██║ █╗ ██║ ╚████╔╝ 
+		██╔═══╝ ██║███╗██║  ╚██╔╝  
+		██║     ╚███╔███╔╝   ██║   
+		╚═╝      ╚══╝╚══╝    ╚═╝   
 
-EOF
+	EOF
 }
 
 ## Kill already running process
@@ -183,20 +185,19 @@ show_result() {
 	curl "qrcode.show/$public_url"
 
 	# save to temp
-	echo $public_url >> /tmp/pwy_link
+	echo $public_url > /tmp/pwy_link
 	qrencode -o /tmp/pwy_qrcode $public_url
 }
 
 ## Tunnel selection
 tunnel_menu() {
-	clear
+	clear 
 	banner
 
 	cat <<- EOF
 		[01] Localhost   
 		[02] Ngrok.io    
 		[03] Cloudflared
-
 	EOF
 
 	read -p "Select a port forwarding service : "
@@ -210,13 +211,43 @@ tunnel_menu() {
 			start_cloudflared;;
 		*)
 			echo -ne "\nInvalid Option, Try Again...\n"
-			{ sleep 1; tunnel_menu; };;
+			sleep 1
+			tunnel_menu
+			;;
+	esac
+}
+
+copy_menu(){
+	clear 
+	banner
+
+	cat <<- EOF
+		[01] Link   
+		[02] QRCODE
+	EOF
+
+	read -p "Select thing to copy: "
+
+	case $REPLY in 
+		1 | 01)
+			xclip -se c -i /tmp/pwy_link
+			echo "Copied Link"	
+			;;
+		2 | 02)
+			xclip -se c -t image/png -i /tmp/pwy_qrcode
+			echo "Copied Qrcode" 
+			;;
+		*)
+			echo -ne "\nInvalid Option, Try Again...\n"
+			sleep 1
+			copy_menu
+			;;
 	esac
 }
 
 #Main
 kill_pid
 dependencies
+main
 tunnel_menu
-
-
+# copy_menu

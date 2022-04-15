@@ -25,13 +25,12 @@ async function render(){
 
 async function events(){
 	theme_select.addEventListener("change", async function() {
-		console.log("test")
 		change(this.value)
 	}) 
 
     theme_option.forEach(option => {
-		option.addEventListener("click",function (){
-			DATA.theme.dark = this.value == "dark"
+		option.addEventListener("change",function (){
+			DATA.theme.dark = this.checked
 			render()
 		})
 	});

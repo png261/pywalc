@@ -11,6 +11,7 @@
 
 <section id="wallpaper">
 	<div class="container">
+		<h1>Wallpaper</h1>
 		<div class="wallpaper__inner">
 			<div class="wallpaper__upload"> 
 				<input type="file" multiple accept="image/png, image/jpeg" />
@@ -23,16 +24,20 @@
 
 <section id="theme">
 	<div class="container">
-		<div class="theme__option">
-			<label for="">dark</label>
-			<input type="radio" name="dark" value="dark" />
-
-			<label for="">light</label>
-			<input type="radio" name="dark" value="light" />
-		</div>
-		<div class="theme__select">
-			<select name="theme_name">
-			</select>
+		<h1>Theme</h1>
+		<div class="theme__inner">
+			<div class="theme__option">
+				<span>light</span>
+				<label class="switch">
+					<input type="checkbox" name="dark" class="switch__checkbox" checked hidden>
+					<span class="switch__slider round"></span>
+				</label>
+				<span>dark</span>
+			</div>
+			<div class="theme__select">
+				<select name="theme_name">
+				</select>
+			</div>
 		</div>
 	</div>
 </section>
@@ -40,23 +45,26 @@
 
 <section id="color">
 	<div class="container">
+		<h1>Color</h1>
 		<div class="color__inner">
-			<input class="color__input" type="color" name="color0" />
-			<input class="color__input" type="color" name="color1" />
-			<input class="color__input" type="color" name="color2" />
-			<input class="color__input" type="color" name="color3" />
-			<input class="color__input" type="color" name="color4" />
-			<input class="color__input" type="color" name="color5" />
-			<input class="color__input" type="color" name="color6" />
-			<input class="color__input" type="color" name="color7" />
-			<input class="color__input" type="color" name="color8" />
-			<input class="color__input" type="color" name="color9" />
-			<input class="color__input" type="color" name="color10" />
-			<input class="color__input" type="color" name="color11" />
-			<input class="color__input" type="color" name="color12" />
-			<input class="color__input" type="color" name="color13" />
-			<input class="color__input" type="color" name="color14" />
-			<input class="color__input" type="color" name="color15" />
+			<div class="color__palate">
+				<input class="color__input" type="color" name="color0" />
+				<input class="color__input" type="color" name="color1" />
+				<input class="color__input" type="color" name="color2" />
+				<input class="color__input" type="color" name="color3" />
+				<input class="color__input" type="color" name="color4" />
+				<input class="color__input" type="color" name="color5" />
+				<input class="color__input" type="color" name="color6" />
+				<input class="color__input" type="color" name="color7" />
+				<input class="color__input" type="color" name="color8" />
+				<input class="color__input" type="color" name="color9" />
+				<input class="color__input" type="color" name="color10" />
+				<input class="color__input" type="color" name="color11" />
+				<input class="color__input" type="color" name="color12" />
+				<input class="color__input" type="color" name="color13" />
+				<input class="color__input" type="color" name="color14" />
+				<input class="color__input" type="color" name="color15" />
+			</div>
 		</div>
 	</div>
 </section>
