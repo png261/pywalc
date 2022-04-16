@@ -38,10 +38,12 @@ kill_pid() {
 
 ## Dependencies
 dependencies() {
-	if [[ `command -v python` && `command -v wget` && `command -v curl` && `command -v unzip` ]]; then
+	pkgs=(python curl wget unzip flask qrencode)
+	checked=$(command -v $(printf "%s " ${pkgs[@]}) | wc -l)
+	if [[ "${#pkgs[@]}" == "${checked}" ]]; then
+		echo "package has been installed"
 		return
 	else
-		pkgs=(python curl wget unzip)
 		for pkg in "${pkgs[@]}"; do
 			type -p "$pkg" &>/dev/null || {
 				echo -e "\nInstalling package : "
@@ -218,7 +220,7 @@ tunnel_menu() {
 }
 
 copy_menu(){
-	clear 
+	clear;
 	banner
 
 	cat <<- EOF
@@ -248,6 +250,5 @@ copy_menu(){
 #Main
 kill_pid
 dependencies
-main
 tunnel_menu
 # copy_menu

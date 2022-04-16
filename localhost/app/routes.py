@@ -3,15 +3,9 @@ import uuid
 import json
 import os
 from app import app
-from flask import render_template
-from flask import request
+from flask import render_template,request
 import shutil
-
-HOME = pywal.settings.HOME
-CACHE_DIR = pywal.settings.CACHE_DIR
-MODULE_DIR = pywal.settings.MODULE_DIR
-CONF_DIR = pywal.settings.CONF_DIR
-
+from .settings import CACHE_DIR,WALLPAPER_DIR,MODULE_DIR
 shutil.copy(os.path.join(CACHE_DIR,"colors.json"), "backup.json")
 
 def reload(data):
@@ -34,7 +28,6 @@ def reset():
     backup = open("backup.json")
     data = json.load(backup)
     reload(data)
-
     return json.dumps({"success": True, "message": "colors has been update"})
 
 
@@ -45,7 +38,6 @@ def changeColor():
         colors = request.get_json()
         data['colors'] = colors
         reload(data)
-
         return json.dumps({"success": True, "message": "colors has been update"})
 
 @app.route("/theme",methods=["GET"])
@@ -79,24 +71,29 @@ def uploadWallpaper():
     newUrl = []
     for file in files:
         filename = str(uuid.uuid4())
-        file.save('/home/png/code/pwy/localhost/app/static/wallpapers/' + filename)
+        path = os.path.join(WALLPAPER_DIR,filename)
+        print(path)
+        file.save(path)
         newUrl.append(filename)
-    print(newUrl)
     return json.dumps({"success": True, "newUrl": newUrl})
 
 
 @app.route("/wallpaper", methods=["GET"])
 def getWallpaper():
-    wallpapers = os.listdir("./app/static/wallpapers")
+    wallpapers = os.listdir(WALLPAPER_DIR)
     return json.dumps(wallpapers)
 
+@app.route("/wallpaper/<wallpaperId>", methods=["GET"])
+def removeWallpaper(wallpaperId):
+    path=os.path.join(WALLPAPER_DIR, wallpaperId)
+    os.remove(path)
+    return json.dumps("test")
 
 @app.route("/wallpaper", methods=["POST"])
 def changeWallpaper():
     wallpaper = request.get_json()
-    path = os.path.join("./app/static/wallpapers", wallpaper)
+    path = os.path.join(WALLPAPER_DIR, wallpaper)
     image = pywal.image.get(path)
     pywal.wallpaper.change(image)
-
     return json.dumps(wallpaper)
 
