@@ -4,14 +4,15 @@ const container = document.querySelector("section#wallpaper")
 const gallery = container.querySelector(".wallpaper__gallery")
 const input_folder = container.querySelector('.wallpaper__upload input[type="file"]')
 
-async function change(el, url) {
+async function change(el, wallId) {
     gallery.querySelectorAll(".wallpaper__picture.active").forEach(pic => { pic.classList.remove("active") });
 
     await fetch(`wallpaper`, {
         method : 'POST',
         headers : {'Content-Type' : 'application/json'},
-        body : JSON.stringify(url)
+        body : JSON.stringify(wallId)
     });
+	DATA.wallpaper.current = wallId
 
     el.classList.add("active");
 }

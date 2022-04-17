@@ -40,6 +40,11 @@ def changeColor():
         reload(data)
         return json.dumps({"success": True, "message": "colors has been update"})
 
+@app.route("/color/wallpaper/<wallpaperId>", methods=["GET"])
+def getWallpaperColors(wallpaperId):
+    img = os.path.join(WALLPAPER_DIR, wallpaperId)
+    return json.dumps(pywal.colors.get(img))
+
 @app.route("/theme",methods=["GET"])
 def theme():
     dark_themes = os.listdir(os.path.join(MODULE_DIR, "colorschemes", "dark"))
@@ -96,4 +101,5 @@ def changeWallpaper():
     image = pywal.image.get(path)
     pywal.wallpaper.change(image)
     return json.dumps(wallpaper)
+
 

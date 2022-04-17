@@ -28,17 +28,17 @@ kill_pid() {
 	if [[ `pidof python` ]]; then
 		killall python > /dev/null 2>&1
 	fi
-	if [[ `pidof ngrok` ]]; then
-		killall ngrok > /dev/null 2>&1
-	fi
 	if [[ `pidof cloudflared` ]]; then
 		killall cloudflared > /dev/null 2>&1
+	fi
+	if [[ `pidof ngrok` ]]; then
+		killall ngrok > /dev/null 2>&1
 	fi
 }
 
 ## Dependencies
 dependencies() {
-	pkgs=(python curl wget unzip flask qrencode)
+	pkgs=(python curl wget unzip flask)
 	checked=$(command -v $(printf "%s " ${pkgs[@]}) | wc -l)
 	if [[ "${#pkgs[@]}" == "${checked}" ]]; then
 		echo "package has been installed"
@@ -184,11 +184,11 @@ show_result() {
 	[[ -z "$public_url" ]] && return;
 	echo -e "\nURL: $public_url"
 	echo -e "\nQRCODE:\n"
-	curl "qrcode.show/$public_url"
+	curl -d "$public_url" https://qrcode.show
 
 	# save to temp
 	echo $public_url > /tmp/pwy_link
-	qrencode -o /tmp/pwy_qrcode $public_url
+	curl -sd "$public_url" https://qrcode.show -H "Accept: image/png" -o /tmp/pwy_qrcode 
 }
 
 ## Tunnel selection

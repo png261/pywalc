@@ -1,13 +1,14 @@
 const container = document.querySelector("section#color")
 const color_input = container.querySelectorAll('input[type="color"]')
 const reset_btn = document.querySelector("button#reset")
+const wallpaper_btn = document.querySelector("button#color__wallpaper")
 
 import DATA,{fetchColor} from "./data.js"
 
-const update = async function ({name, value}) {
+const update = async function (colors) {
     if (!DATA.options.update_on_change) return;
 
-    DATA.color[name] = value
+	DATA.color = {...DATA.color,...colors}
     const response = await fetch(`color`, {
         method : 'POST',
         headers : {'Content-Type' : 'application/json'},
@@ -28,6 +29,14 @@ const reset = async function() {
     render()
 }
 
+const getWallpaper = async function (){
+    const respone = await fetch(`color/wallpaper/${DATA.wallpaper.current}`)
+	const data = await respone.json()
+	DATA.color = data.colors
+	update(DATA.color)
+	render()
+}
+
 const events = function () {
     color_input.forEach( inputEl => {
 		inputEl.addEventListener('input', function() {
@@ -37,6 +46,7 @@ const events = function () {
 		})
 	});
     reset_btn.addEventListener('click', reset)
+    wallpaper_btn.addEventListener('click', getWallpaper)
 }
 
 export {
