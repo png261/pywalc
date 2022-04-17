@@ -22,7 +22,7 @@ export async function upload([...imgs]) {
 	const formData = new FormData();
 	imgs.map(img => formData.append("images", img))
 
-	const respone = await fetch(`uploadWallpaper`, {
+	const respone = await fetch(`upload_wallpaper`, {
         method : 'POST',
         body : formData 
     });

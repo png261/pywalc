@@ -1,9 +1,9 @@
+import DATA, { initData } from "./data.js"
+
 import * as Settings from "./Settings.js"
 import * as Color from "./Color.js"
 import * as Theme from "./Theme.js"
 import * as Wallpaper from "./Wallpaper.js"
-
-import DATA,{initData} from "./data.js"
 
 async function render(){
 	await Wallpaper.render()

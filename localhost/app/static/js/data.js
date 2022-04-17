@@ -1,27 +1,14 @@
-let DATA={
-	color:{},
-	theme:{
-		dark: true,
-		list:{}
-	},
-	wallpaper:{
-		current:"",
-		list:[]
-	},
-	options:{
-		update_on_change : true,
-	},
-}
+let DATA={};
 
 export async function fetchColor() {
-    const response = await fetch("all");
+    const response = await fetch("color");
 	const result = await response.json()
 	DATA.color = result.colors
 }
 
 export async function fetchTheme() {
     const response = await fetch("theme");
-	const result = {...await response.json()}
+	const result = await response.json()
 	DATA.theme.list = result
 }
 
@@ -31,10 +18,10 @@ export async function fetchWallpaper() {
 	DATA.wallpaper.list = result
 }
 
-export async function initData(){
-	await fetchTheme()
-	await fetchWallpaper()
-	await fetchColor()
+export async function initData (){
+    const response = await fetch("all");
+	const result = await response.json()
+	DATA = result
 }
 
 export default DATA

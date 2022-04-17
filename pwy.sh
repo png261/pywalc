@@ -9,6 +9,9 @@ DEFAULT_TUNNEL="cloudflared"
 if [[ ! -d ".server" ]]; then
 	mkdir -p ".server"
 fi
+if [[ ! -d "~/.cache/pwy" ]]; then
+	mkdir -p "$HOME/.cache/pwy"
+fi
 
 banner(){
 	cat <<- EOF
