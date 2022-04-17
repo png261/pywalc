@@ -4,7 +4,7 @@ const container = document.querySelector("section#wallpaper")
 const gallery = container.querySelector(".wallpaper__gallery")
 const input_folder = container.querySelector('.wallpaper__upload input[type="file"]')
 
-async function change(el, wallId) {
+export async function change(el, wallId) {
     gallery.querySelectorAll(".wallpaper__picture.active").forEach(pic => { pic.classList.remove("active") });
 
     await fetch(`wallpaper`, {
@@ -18,7 +18,7 @@ async function change(el, wallId) {
 }
 window.changeWallpaper = change
 
-async function upload([...imgs]) {
+export async function upload([...imgs]) {
 	const formData = new FormData();
 	imgs.map(img => formData.append("images", img))
 
@@ -33,18 +33,12 @@ async function upload([...imgs]) {
 	}
 }
 
-async function events() {
+export async function events() {
 	input_folder.addEventListener("change",function (){
 		upload(this.files)
 	})
 }
 
-async function render() {
+export async function render() {
     gallery.innerHTML = DATA.wallpaper.list.reduce((html, url) => html += `<div onclick="changeWallpaper(this,'${url}')" class="wallpaper__picture" style="background-image:url(/static/wallpapers/${url})"> </div>`, "")
-}
-
-export {
-	change,
-	render,
-	events,
 }

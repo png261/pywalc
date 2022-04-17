@@ -2,10 +2,12 @@
 
 {% block content %}
 
-<section id="configs">
+<section id="settings">
 	<div class="container">
-		<label for="">save on change</label>
-		<input type="checkbox" name="update_on_change" checked/>
+		<div class="settings__inner">
+			<input type="checkbox" name="update_on_change" checked/>
+			<label for="">save on change</label>
+		</div>
 	</div>
 </section>
 
@@ -73,7 +75,7 @@
 <section id="action">
 	<div class="container">
 		<div class="action__inner">
-			<button id="changeAll">Change</button>
+			<button id="action__change">Change</button>
 			<button id="reset">Reset</button>
 		</div>
 	</div>

@@ -8,7 +8,6 @@ let DATA={
 		current:"",
 		list:[]
 	},
-
 	options:{
 		update_on_change : true,
 	},

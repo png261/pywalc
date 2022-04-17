@@ -5,7 +5,7 @@ const section = document.querySelector("section#theme")
 const theme_select = section.querySelector('.theme__select select[name="theme_name"]')
 const theme_option = section.querySelectorAll('.theme__option input[name="dark"]')
 
-async function change(name){
+export async function change(name){
     await fetch("theme", {
         method : 'POST',
         headers : {'Content-Type' : 'application/json'},
@@ -18,12 +18,12 @@ async function change(name){
 	await Color.render()
 }
 
-async function render(){
+export async function render(){
 	const dark = DATA.theme.dark ? "dark" : "light"
 	theme_select.innerHTML = DATA.theme.list[dark].reduce((html,theme) => html +=`<option>${theme}</option>`,"") 
 }
 
-async function events(){
+export async function events(){
 	theme_select.addEventListener("change", async function() {
 		change(this.value)
 	}) 
@@ -34,9 +34,4 @@ async function events(){
 			render()
 		})
 	});
-}
-
-export {
-	render,
-	events
 }
