@@ -1,14 +1,10 @@
 import os
 from flask_restful import Api, Resource
-from .settings import CACHE_DIR,WALLPAPER_DIR,MODULE_DIR,BACKUP_FILE,DATA
+from .settings import CACHE_DIR,MODULE_DIR,DATA
 
 class themeRoutes(Resource):
     def get(self):
-        dark_themes = os.listdir(os.path.join(MODULE_DIR, "colorschemes", "dark"))
-        dark_themes  = [theme.split('.')[0] for theme in dark_themes]
-        light_themes = os.listdir(os.path.join(MODULE_DIR, "colorschemes", "light"))
-        light_themes  = [theme.split('.')[0] for theme in light_themes]
-        return { "dark": dark_themes, "light": light_themes }
+        return DATA["theme"]["list"]
     def post(self):
         theme = request.get_json()
         option = "" if theme['dark'] else "-l"

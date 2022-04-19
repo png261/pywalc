@@ -2,7 +2,7 @@
 public_url=""
 HOST='127.0.0.1'
 PORT='8080'
-
+SITE='https://png261.github.io/pwy/'
 DEFAULT_TUNNEL="cloudflared"
 
 ## Directories
@@ -151,7 +151,7 @@ install_cloudflared() {
 
 
 setup_site() {
-	cd localhost && python run.py > /dev/null 2>&1 & 
+	cd api && python run.py > /dev/null 2>&1 & 
 }
 
 ## Start localhost
@@ -187,11 +187,12 @@ show_result() {
 	[[ -z "$public_url" ]] && return;
 	echo -e "\nURL: $public_url"
 	echo -e "\nQRCODE:\n"
-	curl -d "$public_url" https://qrcode.show
+	curl -d "$SITE?api=$public_url" https://qrcode.show
 
 	# save to temp
 	echo $public_url > /tmp/pwy_link
-	curl -sd "$public_url" https://qrcode.show -H "Accept: image/png" -o /tmp/pwy_qrcode 
+	echo "$SITE?api=$public_url" > /tmp/pwy_site
+	curl -sd "$SITE?api=$public_url" https://qrcode.show -H "Accept: image/png" -o /tmp/pwy_qrcode 
 }
 
 ## Tunnel selection
