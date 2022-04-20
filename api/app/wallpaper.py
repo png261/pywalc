@@ -3,19 +3,22 @@ import pywal
 import uuid
 from flask import request
 from flask_restful import Api, Resource
-from .settings import CACHE_DIR,DATA
+from .settings import CACHE_DIR,WALLPAPER_DIR
+from .data import WAL, COLOR, WALLPAPER, THEME, update_wall
+
 
 class wallpaperRoutes(Resource):
     def get(self):
-        return DATA["wallpaper"]["list"]
+        update_wall()
+        return WALLPAPER
     def put(self):
-        wallpaper = request.get_json()
-        path = os.path.join(WALLPAPER_DIR, wallpaper)
-        image = pywal.image.get(path)
+        id = request.get_json()
+        image = pywal.image.get(os.path.join(WALLPAPER_DIR, id))
         pywal.wallpaper.change(image)
-        return wallpaper
+        WALLPAPER["current"] = id;
+        return {"success": True, "message": "img has been removed"}
+
     def post(self):
-        print("upload")
         files = request.files.getlist("images")
         newUrl = []
         for file in files:
@@ -23,10 +26,11 @@ class wallpaperRoutes(Resource):
             path = os.path.join(WALLPAPER_DIR,filename)
             file.save(path)
             newUrl.append(filename)
-        DATA["wallpaper"]["list"]
+        update_wall()
         return {"success": True, "newUrl": newUrl}
+
     def delete(self,id):
-        path=os.path.join(WALLPAPER_DIR, id)
-        os.remove(path)
+        os.remove(os.path.join(WALLPAPER_DIR, id))
+        update_wall()
         return {"success": True, "message": "img has been removed"}
 
