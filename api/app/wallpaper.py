@@ -2,9 +2,9 @@ import os
 import pywal
 import uuid
 from flask import request
-from flask_restful import Api, Resource
-from .settings import CACHE_DIR,WALLPAPER_DIR
-from .data import WAL, COLOR, WALLPAPER, THEME, update_wall
+from flask_restful import Resource
+from .settings import WALLPAPER_DIR
+from .data import WAL,WALLPAPER, update_wall
 
 
 class wallpaperRoutes(Resource):
@@ -15,7 +15,7 @@ class wallpaperRoutes(Resource):
         id = request.get_json()
         image = pywal.image.get(os.path.join(WALLPAPER_DIR, id))
         pywal.wallpaper.change(image)
-        WALLPAPER["current"] = id;
+        WALLPAPER["current"] = id
         return {"success": True, "message": "img has been removed"}
 
     def post(self):
