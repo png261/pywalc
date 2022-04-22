@@ -13,5 +13,5 @@ class themeRoutes(Resource):
         option = "" if THEME['isDark'] else "-l"
         os.system("wal -q " + option + " --theme " + data['name'])  
         update_color() 
-        return {"success": True, "message": "Theme has been set"}
+        return {"message": "Theme has been set"}
 

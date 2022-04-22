@@ -3,11 +3,12 @@ import os
 from .settings import CACHE_DIR, WALLPAPER_DIR
 
 WAL= pywal.colors.file(os.path.join(CACHE_DIR,"colors.json"))
-THEME={
-        "isDark": True,
+
+THEME = {
+    "isDark": True,
 }
-COLOR={}
-WALLPAPER={}
+COLOR = {}
+WALLPAPER = {}
 
 # wallpaper
 def update_wall():
