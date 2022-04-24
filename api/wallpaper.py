@@ -1,7 +1,11 @@
 import os
+import uuid
+from typing import List
 import pywal
 from data import WALLPAPER,update_wall
 from settings import WALLPAPER_DIR,OS 
+from fastapi import Request
+from fastapi import FastAPI, File, UploadFile
 
 from app import app
 
@@ -19,20 +23,27 @@ def get_wallpapers():
     update_wall()
     return WALLPAPER
 
-@app.put("/wallpaper")
-def set_wallpaper():
+@app.put("/wallpaper/{id}")
+def set_wallpaper(id:str):
     image = pywal.image.get(os.path.join(WALLPAPER_DIR, id))
     pywal.wallpaper.change(image)
     WALLPAPER["current"] = id
 
-@app.post("/wallpaper")
-def add_wallpaper():
-    files = request.files.getlist("images")
-    newUrl = save(files)
-    update_wall()
-    return {"success": True, "newUrl": newUrl}
+def save_file(filename, data):
+    with open(filename, 'wb') as f:
+        f.write(data)
 
-@app.delete("/wallpaper")
-def delete_wallpaper():
+@app.post("/wallpaper")
+async def upload(files: List[UploadFile] = File(...)):
+    newUrl = []
+    for file in files:
+        contents = await file.read()
+        filename = str(uuid.uuid4())
+        save_file(os.path.join(WALLPAPER_DIR,filename), contents)
+        newUrl.append(filename)
+    return {"newUrl": newUrl}
+
+@app.delete("/wallpaper/{id}")
+def delete_wallpaper(id:str):
     os.remove(os.path.join(WALLPAPER_DIR, id))
     update_wall()

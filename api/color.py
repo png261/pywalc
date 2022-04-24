@@ -2,6 +2,8 @@ import os
 import pywal
 from data import COLOR,update_color
 from settings import WALLPAPER_DIR,OS 
+from fastapi import Request
+from data import WAL
 
 from app import app
 
@@ -21,5 +23,7 @@ def get_colors():
     return COLOR
 
 @app.put("/color")
-def set_color(colors):
+async def set_color(request: Request):
+    colors = await request.json()
     COLOR.update(colors)
+    reload()

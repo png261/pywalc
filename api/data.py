@@ -33,4 +33,5 @@ def update_theme():
         "light": light_themes
     })
 
+update_color()
 update_theme()
