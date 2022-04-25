@@ -151,7 +151,7 @@ install_cloudflared() {
 
 
 setup_site() {
-	cd api && python run.py > /dev/null 2>&1 & 
+	cd api && python app.py > /dev/null 2>&1 & 
 }
 
 ## Start localhost

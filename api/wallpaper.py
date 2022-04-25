@@ -2,48 +2,48 @@ import os
 import uuid
 from typing import List
 import pywal
-from data import WALLPAPER,update_wall
-from settings import WALLPAPER_DIR,OS 
-from fastapi import Request
-from fastapi import FastAPI, File, UploadFile
-
+from settings import WALLPAPER_DIR,OS, WAL
+from fastapi import Request, FastAPI, File, UploadFile
 from app import app
 
-def save(files):
-    newUrl = []
-    for file in files:
-        filename = str(uuid.uuid4())
-        path = os.path.join(WALLPAPER_DIR,filename)
-        file.save(path)
-        newUrl.append(filename)
-    return newUrl
+WALLPAPER = {}
+def update_wall():
+    WALLPAPER.update({
+        'current': WAL["wallpaper"],
+        'list': os.listdir(WALLPAPER_DIR)
+    })
+update_wall()
 
-@app.get("/wallpaper")
+@app.get("/wallpaper/{id}/color", tags=[ "wallpaper" ])
+def get_wallpaper_colors(id):
+    img = os.path.join(WALLPAPER_DIR, id)
+    colors = pywal.colors.get(img)["colors"]
+    return colors
+
+@app.get("/wallpaper", tags=["wallpaper"])
 def get_wallpapers():
     update_wall()
     return WALLPAPER
 
-@app.put("/wallpaper/{id}")
+@app.put("/wallpaper/{id}", tags=[ "wallpaper" ])
 def set_wallpaper(id:str):
     image = pywal.image.get(os.path.join(WALLPAPER_DIR, id))
     pywal.wallpaper.change(image)
     WALLPAPER["current"] = id
 
-def save_file(filename, data):
-    with open(filename, 'wb') as f:
-        f.write(data)
-
-@app.post("/wallpaper")
+@app.post("/wallpaper", tags=[ "wallpaper" ])
 async def upload(files: List[UploadFile] = File(...)):
     newUrl = []
     for file in files:
-        contents = await file.read()
+        content = await file.read()
         filename = str(uuid.uuid4())
-        save_file(os.path.join(WALLPAPER_DIR,filename), contents)
+        path = os.path.join(WALLPAPER_DIR,filename) 
+        with open(path, 'wb') as f:
+            f.write(content)
         newUrl.append(filename)
     return {"newUrl": newUrl}
 
-@app.delete("/wallpaper/{id}")
+@app.delete("/wallpaper/{id}",tags=[ "wallpaper" ])
 def delete_wallpaper(id:str):
     os.remove(os.path.join(WALLPAPER_DIR, id))
     update_wall()
