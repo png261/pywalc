@@ -1,22 +1,25 @@
+import os
 import socket
+import json
+import pywal
 from settings import OS 
 from app import app
-from settings import WAL
+from settings import WAL, BACKUP_FILE, WALLPAPER_DIR
 from color import COLOR
 from wallpaper import WALLPAPER
 
-@app.get("/reload", tags=["system"])
-def load_changes():
-    colors = []
-    for color_name in COLOR:
-        colors.append(COLOR[color_name])
-
-    data = pywal.colors.colors_to_dict(colors, WAL["wallpaper"])
-    pywal.export.every(data)
-    pywal.sequences.send(data)
-    pywal.reload.xrdb()
+@app.get("/reset",tags = ["system"])
+def reset_all():
+    backup = open(BACKUP_FILE)
+    data = json.load(backup)
+    COLOR.update(data["colors"])
+    WALLPAPER.update({
+        "current": data["wallpaper"]
+    })
+    image = pywal.image.get(os.path.join(WALLPAPER_DIR, data["wallpaper"]))
+    pywal.wallpaper.change(image)
 
 @app.get("/sys",tags=["system"])
 def get_system_info():
-    name=socket.gethostname() 
+    name = socket.gethostname() 
     return { "os":OS, "name":name }

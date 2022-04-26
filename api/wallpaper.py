@@ -6,13 +6,21 @@ from settings import WALLPAPER_DIR,OS, WAL
 from fastapi import Request, FastAPI, File, UploadFile
 from app import app
 
-WALLPAPER = {}
-def update_wall():
+WALLPAPER = {
+    'current': WAL["wallpaper"],
+    'list': os.listdir(WALLPAPER_DIR)
+}
+
+
+def update_list_wallpaper():
     WALLPAPER.update({
-        'current': WAL["wallpaper"],
         'list': os.listdir(WALLPAPER_DIR)
     })
-update_wall()
+
+@app.get("/wallpaper/load", tags=[ "wallpaper" ])
+def load_wallpaper():
+    image = pywal.image.get(os.path.join(WALLPAPER_DIR, WALLPAPER["current"]))
+    pywal.wallpaper.change(image)
 
 @app.get("/wallpaper/{id}/color", tags=[ "wallpaper" ])
 def get_wallpaper_colors(id):
@@ -22,13 +30,10 @@ def get_wallpaper_colors(id):
 
 @app.get("/wallpaper", tags=["wallpaper"])
 def get_wallpapers():
-    update_wall()
     return WALLPAPER
 
 @app.put("/wallpaper/{id}", tags=[ "wallpaper" ])
 def set_wallpaper(id:str):
-    image = pywal.image.get(os.path.join(WALLPAPER_DIR, id))
-    pywal.wallpaper.change(image)
     WALLPAPER["current"] = id
 
 @app.post("/wallpaper", tags=[ "wallpaper" ])
@@ -41,9 +46,11 @@ async def upload(files: List[UploadFile] = File(...)):
         with open(path, 'wb') as f:
             f.write(content)
         newUrl.append(filename)
+
+    update_list_wallpaper()
     return {"newUrl": newUrl}
 
 @app.delete("/wallpaper/{id}",tags=[ "wallpaper" ])
 def delete_wallpaper(id:str):
     os.remove(os.path.join(WALLPAPER_DIR, id))
-    update_wall()
+    update_list_wallpaper()

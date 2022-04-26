@@ -5,19 +5,15 @@ from app import app
 from fastapi import Request
 from settings import MODULE_DIR
 
+dark_themes = [theme.name.replace(".json", "")
+               for theme in pywal.theme.list_themes()]
+light_themes = [theme.name.replace(".json", "")
+               for theme in pywal.theme.list_themes(dark=False)]
 THEME = {
     "isDark": True,
+    "dark": dark_themes,
+    "light": light_themes
 }
-def update_theme():
-    dark_themes = [theme.name.replace(".json", "")
-                   for theme in pywal.theme.list_themes()]
-    light_themes = [theme.name.replace(".json", "")
-                   for theme in pywal.theme.list_themes(dark=False)]
-    THEME.update({
-        "dark": dark_themes,
-        "light": light_themes
-    })
-update_theme()
 
 @app.get("/theme", tags=["theme"])
 def get_themes():
