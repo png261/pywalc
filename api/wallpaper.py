@@ -30,6 +30,7 @@ def get_wallpaper_colors(id):
 
 @app.get("/wallpaper", tags=["wallpaper"])
 def get_wallpapers():
+    update_list_wallpaper()
     return WALLPAPER
 
 @app.put("/wallpaper/{id}", tags=[ "wallpaper" ])
@@ -46,7 +47,6 @@ async def upload(files: List[UploadFile] = File(...)):
         with open(path, 'wb') as f:
             f.write(content)
         newUrl.append(filename)
-
     update_list_wallpaper()
     return {"newUrl": newUrl}
 

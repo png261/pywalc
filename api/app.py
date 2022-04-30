@@ -34,7 +34,8 @@ app = FastAPI(
         "email": "nhphuong.code@gmail.com",
     },
     openapi_tags=tags_metadata,
-    redoc_url=None
+    redoc_url=None,
+    docs_url="/"
 )
 app.add_middleware(
     CORSMiddleware,
