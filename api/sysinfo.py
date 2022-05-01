@@ -23,3 +23,9 @@ def reset_all():
 def get_system_info():
     name = socket.gethostname() 
     return { "os":OS, "name":name }
+
+@app.get("/health",tags=["system"])
+def check_health():
+    return {"connected":True}
+
+
