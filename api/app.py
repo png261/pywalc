@@ -1,10 +1,10 @@
-import os
 import pywal
 from fastapi import FastAPI,Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from settings import DATA_DIR
 import uvicorn
+import configparser
 
 tags_metadata = [
     {
@@ -50,5 +50,10 @@ from wallpaper import *
 from theme import *
 from color import *
 
+config = configparser.ConfigParser()
+config.read_file(open(r'../config'))
+HOST = config.get('host', 'HOST')
+PORT = int(config.get('host', 'API_PORT'))
+
 if __name__ == "__main__":
-    uvicorn.run("app:app", host="0.0.0.0", port=8080,log_level="info", reload=True)
+    uvicorn.run("app:app", host=HOST, port=PORT, log_level="info", reload=True)

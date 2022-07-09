@@ -1,0 +1,29 @@
+{"level":"info","time":"2022-07-09T01:40:51Z","message":"Thank you for trying Cloudflare Tunnel. Doing so, without a Cloudflare account, is a quick way to experiment and try it out. However, be aware that these account-less Tunnels have no uptime guarantee. If you intend to use Tunnels in production you should use a pre-created named tunnel by following: https://developers.cloudflare.com/cloudflare-one/connections/connect-apps"}
+{"level":"info","time":"2022-07-09T01:40:51Z","message":"Requesting new quick Tunnel on trycloudflare.com..."}
+{"level":"info","time":"2022-07-09T01:40:53Z","message":"+--------------------------------------------------------------------------------------------+"}
+{"level":"info","time":"2022-07-09T01:40:53Z","message":"|  Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):  |"}
+{"level":"info","time":"2022-07-09T01:40:53Z","message":"|  https://unsubscribe-centres-herb-said.trycloudflare.com                                   |"}
+{"level":"info","time":"2022-07-09T01:40:53Z","message":"+--------------------------------------------------------------------------------------------+"}
+{"level":"info","time":"2022-07-09T01:40:53Z","message":"Cannot determine default configuration path. No file [config.yml config.yaml] in [~/.cloudflared ~/.cloudflare-warp ~/cloudflare-warp /etc/cloudflared /usr/local/etc/cloudflared]"}
+{"level":"info","time":"2022-07-09T01:40:53Z","message":"Version 2022.7.1"}
+{"level":"info","time":"2022-07-09T01:40:53Z","message":"GOOS: linux, GOVersion: go1.17.10, GoArch: amd64"}
+{"level":"info","time":"2022-07-09T01:40:53Z","message":"Settings: map[logfile:.cloudflared.log protocol:quic url:127.0.0.1:2601]"}
+{"level":"info","autoupdateFreq":86400000,"time":"2022-07-09T01:40:53Z","message":"Autoupdate frequency is set"}
+{"level":"info","time":"2022-07-09T01:40:53Z","message":"Generated Connector ID: 59913c2b-7d7a-47fc-9dd4-9319dc381ec7"}
+{"level":"info","time":"2022-07-09T01:40:53Z","message":"Initial protocol quic"}
+{"level":"info","time":"2022-07-09T01:40:53Z","message":"Starting metrics server on 127.0.0.1:37325/metrics"}
+{"level":"error","ip":"198.41.200.233","connIndex":0,"error":"Unauthorized: Failed to get tunnel","time":"2022-07-09T01:40:53Z","message":"Failed to serve quic connection"}
+{"level":"error","ip":"198.41.200.233","connIndex":0,"error":"Unauthorized: Failed to get tunnel","time":"2022-07-09T01:40:53Z","message":"Register tunnel error from server side"}
+{"level":"info","ip":"198.41.200.233","connIndex":0,"time":"2022-07-09T01:40:54Z","message":"Retrying connection in up to 2s seconds"}
+{"level":"info","connIndex":0,"location":"SIN","ip":"198.41.200.233","time":"2022-07-09T01:40:57Z","message":"Connection c2162fca-068f-4438-b6cf-6cf5760bd136 registered"}
+{"level":"info","connIndex":1,"location":"HKG","ip":"198.41.192.167","time":"2022-07-09T01:40:58Z","message":"Connection bda0bd9e-ffb7-4c02-bf60-82166316238b registered"}
+{"level":"info","connIndex":2,"location":"SIN","ip":"198.41.200.23","time":"2022-07-09T01:40:59Z","message":"Connection c61e5ca6-6813-4d1b-8dbd-02dc4c369030 registered"}
+{"level":"info","connIndex":3,"location":"HKG","ip":"198.41.192.27","time":"2022-07-09T01:41:00Z","message":"Connection c7afa15c-80c6-40c5-b5c1-f23f89cde733 registered"}
+{"level":"info","time":"2022-07-09T01:42:37Z","message":"Initiating graceful shutdown due to signal interrupt ..."}
+{"level":"info","connIndex":1,"time":"2022-07-09T01:42:38Z","message":"Unregistered tunnel connection"}
+{"level":"info","connIndex":3,"time":"2022-07-09T01:42:38Z","message":"Unregistered tunnel connection"}
+{"level":"info","connIndex":2,"time":"2022-07-09T01:42:38Z","message":"Unregistered tunnel connection"}
+{"level":"info","connIndex":0,"time":"2022-07-09T01:42:38Z","message":"Unregistered tunnel connection"}
+{"level":"error","time":"2022-07-09T01:42:38Z","message":"no more connections active and exiting"}
+{"level":"info","time":"2022-07-09T01:42:38Z","message":"Tunnel server stopped"}
+{"level":"info","time":"2022-07-09T01:42:38Z","message":"Metrics server stopped"}
