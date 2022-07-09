@@ -1,5 +1,1 @@
-.cld.log
-localhost/app/static/wallpapers
-localhost/app/__pycache__
-localhost/backup.json
-.server/*
+.*

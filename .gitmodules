@@ -1,0 +1,8 @@
+[submodule "pwy"]
+	path = pwy
+	url = https://github.com/png261/pwy
+	branch = gh-pages
+[submodule "static"]
+	path = static
+	url = https://github.com/png261/pwy
+	branch = gh-pages
