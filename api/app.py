@@ -52,8 +52,9 @@ from color import *
 
 config = configparser.ConfigParser()
 config.read_file(open(r'../config'))
-HOST = config.get('host', 'HOST')
-PORT = int(config.get('host', 'API_PORT'))
+
+HOST = config['host']['HOST']
+PORT = int(config['host']['API_PORT'])
 
 if __name__ == "__main__":
-    uvicorn.run("app:app", host=HOST, port=PORT, log_level="info", reload=True)
+    uvicorn.run("app:app", host=HOST, port=PORT)

@@ -1,7 +1,13 @@
 #!/bin/bash
 source config
 
+processid=/tmp/pwy_process
+tmp_api=/tmp/pwy_api
+tmp_site=/tmp/pwy_site
+tmp_qrcode=/tmp/pwy_qrcode
+
 banner(){
+
 	cat <<- EOF
 
 		██████╗ ██╗    ██╗██╗   ██╗
@@ -14,77 +20,74 @@ banner(){
 	EOF
 }
 
-init(){
-	if [[ ! -d ".server" ]]; then
-		mkdir -p ".server"
-	fi
-	if [[ ! -d $CACHE_DIR ]]; then
-		mkdir -p $CACHE_DIR
-	fi
+pwy_stop(){
+	[[ ! -f $processid ]] && return
 
-	if [[ `pidof python` ]]; then
-		killall python > /dev/null 2>&1
-	fi
-	if [[ `pidof cloudflared` ]]; then
-		killall cloudflared > /dev/null 2>&1
-	fi
+	kill $(cat $processid) > /dev/null 2>&1
+	rm $processid
+}
+
+init(){
+	[[ ! -d ".server" ]] && mkdir -p ".server"
+	[[ ! -d $WALLPAPER_DIR ]] && mkdir -p $WALLPAPER_DIR
+	pwy_stop
+}
+
+download_cloudflared() {
+	url="https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-$1"
+	file=`basename $url`
+
+	[[ -e "$file" ]] && rm -rf "$file"
+
+	wget --no-check-certificate "$url" > /dev/null 2>&1
+	[[ ! -e "$file" ]] && echo -e "\n Error occured, Install Cloudflared manually."
+
+	mv -f "$file" .server/cloudflared && chmod +x .server/cloudflared 
 }
 
 install_cloudflared() {
-	download_cloudflared() {
-		url="$1"
-		file=`basename $url`
+	[[ -e ".server/cloudflared" ]] && return
 
-		if [[ -e "$file" ]]; then
-			rm -rf "$file"
-		fi
-
-		wget --no-check-certificate "$url" > /dev/null 2>&1
-
-		if [[ -e "$file" ]]; then
-			mv -f "$file" .server/cloudflared > /dev/null 2>&1
-			chmod +x .server/cloudflared > /dev/null 2>&1
-		else
-			echo -e "\n Error occured, Install Cloudflared manually."
-		fi
-	}
-
-	if [[ -e ".server/cloudflared" ]]; then
-		return
-	else
-		echo -e "\nInstalling Cloudflared..."
-		arch=`uname -m`
-		if [[ "$arch" == *'arm'* ]]; then
-			download_cloudflared 'https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm'
-		elif [[ "$arch" == *'aarch64'* ]]; then
-			download_cloudflared 'https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64'
-		elif [[ "$arch" == *'x86_64'* ]]; then
-			download_cloudflared 'https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64'
-		else
-			download_cloudflared 'https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-386'
-		fi
-	fi
+	echo -e "\nInstalling Cloudflared..."
+	case `uname -m` in 
+		*'arm'*)
+			download_cloudflared 'arm' ;;
+		*'aarch64'*)
+			download_cloudflared 'arm64' ;;
+		*'x86_64'*)
+			download_cloudflared 'amd64' ;;
+		*)
+			download_cloudflared '386' ;;
+	esac
 
 }
 
 start_api() {
-	cd api && python app.py > /dev/null 2>&1 & 
+	cd api && python app.py > /dev/null 2>&1 & echo "$!" >> $processid
 }
 
 start_localhost() {
 	start_api
-	python -m http.server -d client -b $HOST $LOCAL_PORT > /dev/null 2>&1 & 
+	python -m http.server -d static -b $HOST $LOCAL_PORT > /dev/null 2>&1 & echo "$!" >> $processid
 	API_URL="$HOST:$API_PORT" 
-	SITE_URL="$HOST:$LOCAL_PORT?api=$API_URL" 
+	SITE_URL="$HOST:$LOCAL_PORT?api=http://$API_URL" 
 	show_result
 }
 
 start_cloudflared() { 
 	logfile=".cloudflared.log"
+	isOnline=$(ping -q -c1 google.com &>/dev/null) 
+	if [ ! isOnline ]; then
+		echo "You are offline, check your connection...." 
+		sleep 2
+		tunnel_menu
 
-	rm -f $logfile &
-	start_api 
-	.server/cloudflared tunnel -url "$HOST":"$API_PORT" --logfile $logfile > /dev/null 2>&1 &
+		return
+	fi
+
+	rm -f $logfile && start_api 
+
+	.server/cloudflared tunnel -url "$HOST":"$API_PORT" --logfile $logfile > /dev/null 2>&1 & echo "$!" >> $processid
 
 	while [ ! $API_URL ]
 	do
@@ -99,15 +102,18 @@ start_cloudflared() {
 show_result() {
 	[[ -z "$API_URL" ]] && return;
 
+	clear
+	banner
+
 	echo -e "\nAPI: $API_URL"
 	echo -e "\nURL: $SITE_URL"
 
 	echo -e "\nQRCODE:\n"
 	qrencode -t ansiutf8 -m 2 <<< $SITE_URL
 
-	echo $API_URL > /tmp/pwy_link
-	echo "$SITE?api=$API_URL" > /tmp/pwy_site
-	qrencode $SITEURL -o /tmp/pwy_qrcode 
+	echo $API_URL > $tmp_api
+	echo "$SITE?api=$API_URL" > $tmp_site
+	qrencode $SITE_URL -o $tmp_qrcode
 }
 
 tunnel_menu() {
@@ -115,17 +121,23 @@ tunnel_menu() {
 	banner
 
 	cat <<- EOF
-		[01] Localhost   
-		[02] Cloudflared
+		[01] Local   
+		[02] Online
+		[03] Copy
+		[04] Stop
 	EOF
 
-	read -p "Select a port forwarding service : "
+	read -p "Your option:"
 
 	case $REPLY in 
 		1 | 01)
-			start_localhost;;
+			start_localhost ;;
 		2 | 02)
-			start_cloudflared;;
+			start_cloudflared ;;
+		3 | 03)
+			copy_menu ;;
+		4 | 04)
+			pwy_stop ;;
 		*)
 			echo -ne "\nInvalid Option, Try Again...\n"
 			sleep 0.5
@@ -134,6 +146,32 @@ tunnel_menu() {
 	esac
 }
 
+copy_menu() {
+	clear 
+	banner
+
+	cat <<- EOF
+		[01] URL   
+		[02] QRCODE
+		[03] API
+	EOF
+
+	read -p "Your option: "
+
+	case $REPLY in 
+		1 | 01)
+			xclip -i $tmp_site -sel c ;;
+		2 | 02)
+			xclip -i $tmp_qrcode -t image/png -sel c ;;
+		3 | 03)
+			xclip -i $tmp_api -sel c ;;
+		*)
+			echo -ne "\nInvalid Option, Try Again...\n"
+			sleep 0.5
+			tunnel_menu
+			;;
+	esac
+}
 init
-dependencies
+install_cloudflared
 tunnel_menu

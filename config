@@ -1,12 +1,13 @@
 #!/bin/bash
 [host]
-API_URL=""
 HOST=127.0.0.1
 API_PORT=2601
 LOCAL_PORT=2004
 
+[directory]
+CACHE_DIR="$HOME/.cache/pwy"
+WALLPAPER_DIR="$CACHE_DIR/wallpapers"
+
 [other]
 SITE='https://png261.github.io/pwy/'
-DEFAULT_TUNNEL="cloudflared"
-CACHE_DIR="$HOME/.cache/pwy"
 

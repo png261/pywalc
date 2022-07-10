@@ -1,10 +1,8 @@
-import os
 import socket
 import json
 import pywal
-from settings import OS 
 from app import app
-from settings import WAL, BACKUP_FILE, WALLPAPER_DIR
+from settings import OS, WAL, BACKUP_FILE, WALLPAPER_DIR
 from color import COLOR
 from wallpaper import WALLPAPER
 
@@ -13,11 +11,7 @@ def reset_all():
     backup = open(BACKUP_FILE)
     data = json.load(backup)
     COLOR.update(data["colors"])
-    WALLPAPER.update({
-        "current": data["wallpaper"]
-    })
-    image = pywal.image.get(os.path.join(WALLPAPER_DIR, data["wallpaper"]))
-    pywal.wallpaper.change(image)
+    WALLPAPER.update({ "current": data["wallpaper"] })
 
 @app.get("/sys",tags=["system"])
 def get_system_info():
