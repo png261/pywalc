@@ -1,0 +1,12 @@
+HOST=127.0.0.1
+API_PORT=2601
+LOCAL_PORT=2004
+CACHE_DIR="$HOME/.cache/pwy"
+WALLPAPER_DIR="$CACHE_DIR/wallpapers"
+SITE='https://png261.github.io/pwy/'
+
+processid=/tmp/pwy_process
+tmp_api=/tmp/pwy_api
+tmp_site=/tmp/pwy_site
+tmp_qrcode=/tmp/pwy_qrcode
+server_log=/tmp/pwy_server.log

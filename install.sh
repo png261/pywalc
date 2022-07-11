@@ -1,4 +1,6 @@
 #!/bin/bash
+source config
+
 pip_install(){
 	requirements=(
 		fastapi
@@ -42,10 +44,42 @@ install_pkgs(){
 	fi
 }
 
+install_cloudflared() {
+	download_cloudflared() {
+		url="https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-$1"
+		file=`basename $url`
+
+		[[ -e "$file" ]] && rm -rf "$file"
+
+		wget --no-check-certificate "$url" > /dev/null 2>&1
+		[[ ! -e "$file" ]] && echo -e "\n Error occured, Install Cloudflared manually."
+
+		mv -f "$file" .server/cloudflared && chmod +x .server/cloudflared 
+	}
+
+	[[ -e ".server/cloudflared" ]] && return
+
+	echo -e "\nInstalling Cloudflared..."
+	case `uname -m` in 
+		*'arm'*)
+			download_cloudflared 'arm' ;;
+		*'aarch64'*)
+			download_cloudflared 'arm64' ;;
+		*'x86_64'*)
+			download_cloudflared 'amd64' ;;
+		*)
+			download_cloudflared '386' ;;
+	esac
+	echo "Cloudflared has been install"
+}
+
 init(){
+	[[ ! -d ".server" ]] && mkdir -p ".server"
+	pip_install
+	install_pkgs
+	install_cloudflared
+
 	chmod +x run.sh
 }
 
-pip_install
-install_pkgs
 init
