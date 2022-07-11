@@ -9,6 +9,13 @@ cd pwy
 pip install -r requirements.txt
 ```
 
+### Dependencies
+- pywal
+- feh
+- uvicorn 
+- xclip
+- qrencode
+
 ### Use
 
 ```
@@ -28,10 +35,3 @@ pip install -r requirements.txt
 Your option:
 
 ```
-
-### Dependencies
-- pywal
-- feh
-- uvicorn 
-- xclip
-- qrencode
