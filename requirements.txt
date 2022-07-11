@@ -1,3 +1,0 @@
-fastapi
-pywal
-python-multipart
