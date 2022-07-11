@@ -15,7 +15,7 @@ def load_colors():
     data = pywal.colors.colors_to_dict(colors, WALLPAPER["current"])
     pywal.export.every(data)
     pywal.sequences.send(data)
-    pywal.reload.xrdb()
+    pywal.reload.env()
 
 @app.get("/color",tags = ["color"])
 def get_colors():

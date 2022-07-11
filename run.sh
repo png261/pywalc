@@ -70,7 +70,7 @@ start_localhost() {
 	start_api
 	python -m http.server -b $HOST $LOCAL_PORT > /dev/null 2>&1 & echo "$!" >> $processid
 	API_URL="$HOST:$API_PORT" 
-	SITE_URL="$HOST:$LOCAL_PORT?api=http://$API_URL" 
+	SITE_URL="$HOST:$LOCAL_PORT/pwy/?api=http://$API_URL" 
 	show_result
 }
 

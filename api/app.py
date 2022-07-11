@@ -1,9 +1,7 @@
-import pywal
 from fastapi import FastAPI,Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from settings import DATA_DIR
-import uvicorn
 
 tags_metadata = [
     {
