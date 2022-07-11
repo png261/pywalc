@@ -1,11 +1,12 @@
+#!/bin/bash
 pip_install(){
 	requirements=(
 		fastapi
 		pywal
 		python-multipart
 	)
-	pip install $requirements
 
+	pip install $requirements
 }
 
 install_pkgs(){
