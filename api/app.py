@@ -4,7 +4,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from settings import DATA_DIR
 import uvicorn
-import configparser
 
 tags_metadata = [
     {
@@ -50,11 +49,3 @@ from wallpaper import *
 from theme import *
 from color import *
 
-config = configparser.ConfigParser()
-config.read_file(open(r'../config'))
-
-HOST = config['host']['HOST']
-PORT = int(config['host']['API_PORT'])
-
-if __name__ == "__main__":
-    uvicorn.run("app:app", host=HOST, port=PORT)

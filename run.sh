@@ -63,12 +63,12 @@ install_cloudflared() {
 }
 
 start_api() {
-	cd api && python app.py > /dev/null 2>&1 & echo "$!" >> $processid
+	uvicorn app:app --app-dir api --host $HOST --port $API_PORT > /dev/null 2>&1 & echo "$!" >> $processid
 }
 
 start_localhost() {
 	start_api
-	python -m http.server -d static -b $HOST $LOCAL_PORT > /dev/null 2>&1 & echo "$!" >> $processid
+	python -m http.server -b $HOST $LOCAL_PORT > /dev/null 2>&1 & echo "$!" >> $processid
 	API_URL="$HOST:$API_PORT" 
 	SITE_URL="$HOST:$LOCAL_PORT?api=http://$API_URL" 
 	show_result
@@ -112,7 +112,7 @@ show_result() {
 	qrencode -t ansiutf8 -m 2 <<< $SITE_URL
 
 	echo $API_URL > $tmp_api
-	echo "$SITE?api=$API_URL" > $tmp_site
+	echo $SITE_URL > $tmp_site
 	qrencode $SITE_URL -o $tmp_qrcode
 }
 
