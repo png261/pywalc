@@ -1,5 +1,5 @@
 # pwy
-Change colors on the fly with interface online
+Change [pywal](https://github.com/dylanaraps/pywal) colors on the fly with interface online
 
 
 ### Installation
