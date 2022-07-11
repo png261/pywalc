@@ -5,7 +5,7 @@ Change [pywal](https://github.com/dylanaraps/pywal) colors online
 ```
 git clone --recursive https://github.com/png261/pwy
 cd pwy
-chmod +x && ./install.sh
+chmod +x install.sh && ./install.sh
 ```
 
 ### Dependencies
