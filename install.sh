@@ -8,7 +8,7 @@ pip_install(){
 		python-multipart
 	)
 
-	pip install $requirements
+	pip install $(printf "%s " ${requirements[@]})
 }
 
 install_pkgs(){
