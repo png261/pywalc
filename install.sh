@@ -8,7 +8,7 @@ pip_install(){
 
 }
 
-install_pkgs() {
+install_pkgs(){
 	pkgs=(
 		feh
 		uvicorn
