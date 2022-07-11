@@ -28,6 +28,7 @@ init(){
 }
 
 start_api() {
+	[[ ! -d $WAL_DIR ]] && wal --theme random
 	uvicorn app:app --app-dir api --host $HOST --port $API_PORT > /dev/null 2>&1 & echo "$!" >> $processid
 }
 
