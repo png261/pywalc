@@ -1,5 +1,5 @@
 # pwy
-Change colors on the fly with interface
+Change colors on the fly with interface online
 
 
 ### Installation
