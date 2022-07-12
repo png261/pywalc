@@ -1,13 +1,13 @@
-import os
 import pywal
-from settings import WALLPAPER_DIR,OS, WAL, CACHE_DIR,WAL_FILE
+from settings import WAL
 from fastapi import Request
 from app import app
 from wallpaper import WALLPAPER
 
 COLOR = WAL["colors"]
 
-@app.get("/color/load",tags = ["color"])
+
+@app.get("/color/load", tags=["color"])
 def load_colors():
     colors = []
     for color_name in COLOR:
@@ -17,11 +17,13 @@ def load_colors():
     pywal.sequences.send(data)
     pywal.reload.env()
 
-@app.get("/color",tags = ["color"])
+
+@app.get("/color", tags=["color"])
 def get_colors():
     return COLOR
 
-@app.put("/color",tags = ["color"])
+
+@app.put("/color", tags=["color"])
 async def set_color(request: Request):
     colors = await request.json()
     COLOR.update(colors)
