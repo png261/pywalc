@@ -23,10 +23,10 @@ pwy_stop(){
 
 init(){
 	[[ ! -d $WALLPAPER_DIR ]] && mkdir -p $WALLPAPER_DIR
-	pwy_stop
 }
 
 start_api() {
+    pwy_stop
 	[[ ! -d $PYWALL_DIR ]] && wal --theme random
     cp $(cat "${PYWALL_DIR}/wal") "${WALLPAPER_DIR}/current"
 	uvicorn app:app --app-dir api --host $HOST --port $API_PORT > /dev/null 2>&1 & echo "$!" >> $processid
