@@ -40,7 +40,8 @@ app.add_middleware(
 )
 app.mount("/static", StaticFiles(directory=DATA_DIR), name="static")
 
-from sysinfo import *
+from init import *
+from system import *
 from wallpaper import *
 from theme import *
 from color import *

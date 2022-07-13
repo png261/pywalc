@@ -2,7 +2,6 @@
 source config
 
 banner(){
-
 	cat <<- EOF
 
 		██████╗ ██╗    ██╗██╗   ██╗
@@ -28,15 +27,16 @@ init(){
 }
 
 start_api() {
-	[[ ! -d $WAL_DIR ]] && wal --theme random
+	[[ ! -d $PYWALL_DIR ]] && wal --theme random
+    cp $(cat "${PYWALL_DIR}/wal") "${WALLPAPER_DIR}/current"
 	uvicorn app:app --app-dir api --host $HOST --port $API_PORT > /dev/null 2>&1 & echo "$!" >> $processid
 }
 
 start_localhost() {
 	start_api
 	python -m http.server -b $HOST $LOCAL_PORT > /dev/null 2>&1 & echo "$!" >> $processid
-	API_URL="$HOST:$API_PORT" 
-	SITE_URL="$HOST:$LOCAL_PORT/pwy/?api=http://$API_URL" 
+	API_URL="http://$HOST:$API_PORT" 
+	SITE_URL="http://$HOST:$LOCAL_PORT/pwy/?api=$API_URL" 
 	show_result
 }
 
@@ -71,8 +71,8 @@ show_result() {
 	clear
 	banner
 
-	echo -e "\nAPI: $API_URL"
 	echo -e "\nURL: $SITE_URL"
+	echo -e "\nAPI: $API_URL"
 
 	echo -e "\nQRCODE:\n"
 	qrencode -t ansiutf8 -m 2 <<< $SITE_URL

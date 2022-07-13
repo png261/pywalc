@@ -2,11 +2,11 @@ import os
 import uuid
 from typing import List
 import pywal
-from settings import WALLPAPER_DIR, WAL
+from settings import WALLPAPER_DIR
 from fastapi import File, UploadFile
 from app import app
 
-WALLPAPER = {'current': WAL["wallpaper"], 'list': os.listdir(WALLPAPER_DIR)}
+WALLPAPER = {'current': 'current', 'list': os.listdir(WALLPAPER_DIR)}
 
 
 def update_list_wallpaper():
@@ -42,7 +42,7 @@ async def upload(files: List[UploadFile] = File(...)):
     newUrl = []
     for file in files:
         content = await file.read()
-        filename = str(uuid.uuid4())
+        filename = str(uuid.uuid1().hex)
         path = os.path.join(WALLPAPER_DIR, filename)
         with open(path, 'wb') as f:
             f.write(content)
