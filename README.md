@@ -1,4 +1,4 @@
-# pwy!
+# pwy
 Change [pywal](https://github.com/dylanaraps/pywal) colors online
 
 ![pwy2](https://user-images.githubusercontent.com/63899044/178858411-98158a3d-76c0-4a61-a797-2e9288864ec7.gif)
