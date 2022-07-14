@@ -12,7 +12,7 @@ chmod +x install.sh && ./install.sh
 ```
 
 ### Dependencies
-- pywal
+- [pywal](https://github.com/dylanaraps/pywal)
 - feh
 - uvicorn 
 - xclip
