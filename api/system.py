@@ -11,7 +11,7 @@ def reset_all():
     backup = open(BACKUP_FILE)
     data = json.load(backup)
     COLOR.update(data["colors"])
-    WALLPAPER.update({"current": data["wallpaper"]})
+    WALLPAPER.update({"current": "current"})
 
 
 @app.get("/sys", tags=["system"])
