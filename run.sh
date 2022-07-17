@@ -91,6 +91,7 @@ tunnel_menu() {
 		[02] Online
 		[03] Copy
 		[04] Stop
+		[05] Reset
 	EOF
 
 	read -p "Your option:"
@@ -104,6 +105,9 @@ tunnel_menu() {
 			copy_menu ;;
 		4 | 04)
 			pwy_stop ;;
+		5 | 05)
+			pwy_stop 
+			rm -rf $CACHE_DIR ;;
 		*)
 			echo -ne "\nInvalid Option, Try Again...\n"
 			sleep 0.5
