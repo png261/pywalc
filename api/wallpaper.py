@@ -39,16 +39,16 @@ def set_wallpaper(id: str):
 
 @app.post("/wallpaper", tags=["wallpaper"])
 async def upload(files: List[UploadFile] = File(...)):
-    newUrl = []
+    imgs = []
     for file in files:
         content = await file.read()
         filename = str(uuid.uuid1().hex)
         path = os.path.join(WALLPAPER_DIR, filename)
         with open(path, 'wb') as f:
             f.write(content)
-        newUrl.append(filename)
+        imgs.append(filename)
     update_list_wallpaper()
-    return {"newUrl": newUrl}
+    return imgs
 
 
 @app.delete("/wallpaper/{id}", tags=["wallpaper"])
