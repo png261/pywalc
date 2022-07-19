@@ -1,6 +1,5 @@
 import pywal
 import os
-import shutil
 
 HOME = pywal.settings.HOME
 OS = pywal.settings.OS

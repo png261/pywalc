@@ -22,7 +22,8 @@ def get_themes():
 
 @app.get("/theme/{category}/{name}", tags=["theme"])
 async def set_theme(name, category):
-    file = open(os.path.join(MODULE_DIR, "colorschemes", category, name + ".json"),
-                "r")
+    file = open(
+        os.path.join(MODULE_DIR, "colorschemes", category, name + ".json"),
+        "r")
     theme_data = json.loads(file.read())
     return theme_data["colors"]

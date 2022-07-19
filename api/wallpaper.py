@@ -13,12 +13,6 @@ def update_list_wallpaper():
     WALLPAPER.update({'list': os.listdir(WALLPAPER_DIR)})
 
 
-@app.get("/wallpaper/load", tags=["wallpaper"])
-def load_wallpaper():
-    image = pywal.image.get(os.path.join(WALLPAPER_DIR, WALLPAPER["current"]))
-    pywal.wallpaper.change(image)
-
-
 @app.get("/wallpaper/{id}/color", tags=["wallpaper"])
 def get_wallpaper_colors(id):
     img = os.path.join(WALLPAPER_DIR, id)
@@ -34,7 +28,8 @@ def get_wallpapers():
 
 @app.put("/wallpaper/{id}", tags=["wallpaper"])
 def set_wallpaper(id: str):
-    WALLPAPER["current"] = id
+    WALLPAPER.update({"current": id})
+    return WALLPAPER
 
 
 @app.post("/wallpaper", tags=["wallpaper"])
@@ -51,7 +46,8 @@ async def upload(files: List[UploadFile] = File(...)):
     return imgs
 
 
-@app.delete("/wallpaper/{id}", tags=["wallpaper"])
-def delete_wallpaper(id: str):
-    os.remove(os.path.join(WALLPAPER_DIR, id))
-    update_list_wallpaper()
+@app.get("/wallpaper/load", tags=["wallpaper"])
+def load_wallpaper():
+    image = pywal.image.get(os.path.join(WALLPAPER_DIR, WALLPAPER["current"]))
+    pywal.wallpaper.change(image)
+    return WALLPAPER

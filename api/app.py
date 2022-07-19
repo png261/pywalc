@@ -6,19 +6,15 @@ from settings import DATA_DIR
 tags_metadata = [
     {
         "name": "wallpaper",
-        "description": "",
     },
     {
         "name": "theme",
-        "description": "",
     },
     {
         "name": "color",
-        "description": "",
     },
     {
         "name": "system",
-        "description": "",
     },
 ]
 
@@ -38,6 +34,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 app.mount("/static", StaticFiles(directory=DATA_DIR), name="static")
 
 from init import *

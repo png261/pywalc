@@ -7,17 +7,16 @@ from wallpaper import WALLPAPER
 
 
 @app.get("/reset", tags=["system"])
-def reset_all():
-    backup = open(BACKUP_FILE)
-    data = json.load(backup)
+def reset():
+    data = json.load(open(BACKUP_FILE))
     COLOR.update(data["colors"])
     WALLPAPER.update({"current": "current"})
+    return {"color": COLOR, "wallpaper": WALLPAPER}
 
 
 @app.get("/sys", tags=["system"])
 def get_system_info():
-    name = socket.gethostname()
-    return {"os": OS, "name": name}
+    return {"os": OS, "name": socket.gethostname()}
 
 
 @app.get("/health", tags=["system"])
