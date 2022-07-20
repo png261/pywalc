@@ -16,7 +16,6 @@ banner(){
 
 pwy_stop(){
 	[[ ! -f $processid ]] && return
-
 	kill $(cat $processid) > /dev/null 2>&1
 	rm $processid
 }
@@ -46,7 +45,6 @@ start_cloudflared() {
 		echo "You are offline, check your connection...." 
 		sleep 2
 		tunnel_menu
-
 		return
 	fi
 
@@ -146,5 +144,4 @@ copy_menu() {
 	esac
 }
 init
-install_cloudflared
 tunnel_menu
