@@ -1,24 +1,29 @@
 import socket
 import json
-from app import app
+
 from settings import OS, BACKUP_FILE
 from color import COLOR
 from wallpaper import WALLPAPER
+from fastapi import APIRouter
+
+systemRouter = APIRouter()
 
 
-@app.get("/reset", tags=["system"])
+@systemRouter.get("/reset", tags=["system"])
 def reset():
-    data = json.load(open(BACKUP_FILE))
+    with open(BACKUP_FILE) as file:
+        data = json.load(file)
+    COLOR.clear()
     COLOR.update(data["colors"])
-    WALLPAPER.update({"current": "current"})
+    WALLPAPER["current"] = "current"
     return {"color": COLOR, "wallpaper": WALLPAPER}
 
 
-@app.get("/sys", tags=["system"])
+@systemRouter.get("/sys", tags=["system"])
 def get_system_info():
     return {"os": OS, "name": socket.gethostname()}
 
 
-@app.get("/health", tags=["system"])
+@systemRouter.get("/health", tags=["system"])
 def check_health():
     return {"connected": True}

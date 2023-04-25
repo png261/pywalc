@@ -87,7 +87,7 @@ tunnel_menu() {
 	cat <<- EOF
 		[01] Local   
 		[02] Online
-		[03] Copy
+		[03] Copy Url
 		[04] Stop
 		[05] Reset
 	EOF

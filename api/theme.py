@@ -1,7 +1,7 @@
 import os
 import json
 import pywal
-from app import app
+from fastapi import APIRouter
 from settings import MODULE_DIR
 
 dark_themes = [
@@ -15,15 +15,19 @@ light_themes = [
 THEME = {"dark": dark_themes, "light": light_themes}
 
 
-@app.get("/theme", tags=["theme"])
+themeRouter = APIRouter()
+
+
+@themeRouter.get("/theme", tags=["theme"])
 def get_themes():
     return THEME
 
 
-@app.get("/theme/{category}/{name}", tags=["theme"])
-async def set_theme(name, category):
-    file = open(
-        os.path.join(MODULE_DIR, "colorschemes", category, name + ".json"),
-        "r")
-    theme_data = json.loads(file.read())
-    return theme_data["colors"]
+@themeRouter.get("/theme/{category}/{name}", tags=["theme"])
+def set_theme(name, category):
+    themes_path = os.path.join(
+        MODULE_DIR, "colorschemes", category, name + ".json"
+    )
+    with open(themes_path) as file:
+        themes = json.loads(file.read())
+    return themes["colors"]

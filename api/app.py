@@ -1,22 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from settings import DATA_DIR
+from settings import CACHE_DIR
 
-tags_metadata = [
-    {
-        "name": "wallpaper",
-    },
-    {
-        "name": "theme",
-    },
-    {
-        "name": "color",
-    },
-    {
-        "name": "system",
-    },
-]
+import init
+from color import colorRouter
+from theme import themeRouter
+from wallpaper import wallpaperRouter
+from system import systemRouter
 
 app = FastAPI(title="Pwy",
               description="Control your pywal",
@@ -25,9 +16,23 @@ app = FastAPI(title="Pwy",
                   "url": "https://png261.github.io",
                   "email": "nhphuong.code@gmail.com",
               },
-              openapi_tags=tags_metadata,
+              openapi_tags=[
+                  {
+                      "name": "wallpaper",
+                  },
+                  {
+                      "name": "theme",
+                  },
+                  {
+                      "name": "color",
+                  },
+                  {
+                      "name": "system",
+                  },
+              ],
               redoc_url=None,
               docs_url="/")
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -35,10 +40,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/static", StaticFiles(directory=DATA_DIR), name="static")
+init.setupFiles()
 
-from init import *
-from system import *
-from wallpaper import *
-from theme import *
-from color import *
+app.mount("/static", StaticFiles(directory=CACHE_DIR), name="static")
+app.include_router(colorRouter)
+app.include_router(themeRouter)
+app.include_router(wallpaperRouter)
+app.include_router(systemRouter)
