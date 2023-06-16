@@ -1,3 +1,9 @@
-.server
-*.log
-api/__pycache__/
+dist/*
+pwy.egg-info/*
+*.pyc
+subprocess
+re
+build/*
+.coverage
+.vscode/*
+__pycache__/*
