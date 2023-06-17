@@ -1,0 +1,5 @@
+recursive-include pywalc/templates *
+recursive-include pywalc/static * 
+
+include README.md
+include LICENSE.md

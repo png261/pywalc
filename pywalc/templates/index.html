@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Pywalc</title>
+    <link href="{{ url_for('static', path='/css/style.css') }}" rel="stylesheet">
+</head>
+
+<body class="home-page">
+    <section id="sys">
+        <div class="container">
+            <div class="sys__inner">
+                <h1 class="sys__title"></h1>
+            </div>
+        </div>
+    </section>
+
+    <section id="wallpaper">
+        <div class="container">
+            <h1>Wallpaper</h1>
+            <div class="wallpaper__inner">
+                <div class="wallpaper__upload">
+                    <button>upload images</button>
+                    <input type="file" multiple accept="image/*" />
+                </div>
+                <div class="wallpaper__gallery"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="theme">
+        <div class="container">
+            <h1>Theme</h1>
+            <div class="theme__inner">
+                <div class="theme__option">
+                    <span>light</span>
+                    <label class="switch">
+                        <input type="checkbox" name="dark" class="switch__checkbox" checked hidden />
+                        <span class="switch__slider round"></span>
+                    </label>
+                    <span>dark</span>
+                </div>
+                <div class="theme__select">
+                    <select name="theme_name"></select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="color">
+        <div class="container">
+            <h1>Color</h1>
+            <div class="color__inner">
+                <button id="color__wallpaper">
+                    Generate from wallpaper
+                </button>
+                <div class="color__palate">
+                    <input class="color__input" type="color" name="color0" />
+                    <input class="color__input" type="color" name="color1" />
+                    <input class="color__input" type="color" name="color2" />
+                    <input class="color__input" type="color" name="color3" />
+                    <input class="color__input" type="color" name="color4" />
+                    <input class="color__input" type="color" name="color5" />
+                    <input class="color__input" type="color" name="color6" />
+                    <input class="color__input" type="color" name="color7" />
+                    <input class="color__input" type="color" name="color8" />
+                    <input class="color__input" type="color" name="color9" />
+                    <input class="color__input" type="color" name="color10" />
+                    <input class="color__input" type="color" name="color11" />
+                    <input class="color__input" type="color" name="color12" />
+                    <input class="color__input" type="color" name="color13" />
+                    <input class="color__input" type="color" name="color14" />
+                    <input class="color__input" type="color" name="color15" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="action">
+        <div class="container">
+            <div class="action__inner">
+                <button class="action__change">Change</button>
+                <button class="action__reset">Reset</button>
+            </div>
+        </div>
+    </section>
+
+    <script type="module" src="{{ url_for('static', path='/js/main.js') }}"></script>
+</body>
+
+</html>

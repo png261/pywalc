@@ -1,5 +1,5 @@
 dist/*
-pwy.egg-info/*
+*.egg-info/*
 *.pyc
 subprocess
 re
