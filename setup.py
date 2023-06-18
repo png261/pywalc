@@ -1,7 +1,7 @@
 import setuptools
 
 LONG_DESC = open("README.md").read()
-VERSION = '0.1.0'
+VERSION = '0.1.1'
 DOWNLOAD = "https://github.com/png261/pywalc/archive/%s.tar.gz" % VERSION
 
 setuptools.setup(
