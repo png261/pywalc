@@ -1,10 +1,11 @@
 import os
 import uuid
-from typing import List
 import pywal
+from fastapi import File, UploadFile
+from typing import List
+
 from .settings import WALLPAPER_DIR
 from . import util
-from fastapi import File, UploadFile
 
 
 class Wallpaper:

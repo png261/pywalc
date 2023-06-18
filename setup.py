@@ -1,7 +1,7 @@
 import setuptools
 
 LONG_DESC = open("README.md").read()
-VERSION = "1.0.4"
+VERSION = '0.1.0'
 DOWNLOAD = "https://github.com/png261/pywalc/archive/%s.tar.gz" % VERSION
 
 setuptools.setup(
@@ -25,6 +25,7 @@ setuptools.setup(
     ],
     packages=["pywalc"],
     entry_points={"console_scripts": ["pywalc=pywalc.__main__:main"]},
+    python_requires=">=3.5",
     install_requires=[
         "pywal>=3.3.0",
         "fastapi>=0.97.0",
@@ -33,6 +34,7 @@ setuptools.setup(
         "Jinja2>=3.1.2",
         "python-multipart>=0.0.6",
         "qrcode>=7.4.2",
+        "argparse>=1.4.0 ",
     ],
     include_package_data=True,
     zip_safe=False,

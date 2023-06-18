@@ -1,15 +1,20 @@
 import pywal
 import os
+from . import util
+
+__version__ = "0.1.0"
 
 HOME = pywal.settings.HOME
-OS = pywal.settings.OS
+XDG_CACHE_DIR = os.getenv("XDG_CACHE_HOME", os.path.join(HOME, ".cache"))
+
 PYWALL_CACHE = pywal.settings.CACHE_DIR
-MODULE_DIR = pywal.settings.MODULE_DIR
+PYWAL_FILE_PATH = os.path.join(PYWALL_CACHE, "colors.json")
+PYWAL_DATA = pywal.colors.file(PYWAL_FILE_PATH)
+PYWAL_CURRENT_WALLPAPER = util.read_file(os.path.join(PYWALL_CACHE, "wal"))[0]
 
-CACHE_DIR = os.path.join(HOME, ".cache", "pywalc")
+MODULE_DIR = os.path.dirname(__file__)
+CACHE_DIR = os.path.join(XDG_CACHE_DIR, "pywalc")
 WALLPAPER_DIR = os.path.join(CACHE_DIR, "wallpapers")
-
 BACKUP_FILE = os.path.join(CACHE_DIR, "backup.json")
-WAL_FILE = os.path.join(PYWALL_CACHE, "colors.json")
 
-WAL = pywal.colors.file(WAL_FILE)
+OS = pywal.settings.OS
