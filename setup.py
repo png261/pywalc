@@ -1,9 +1,8 @@
-"""pwy - setup.py"""
 import setuptools
 
-LONG_DESC = open('README.md').read()
+LONG_DESC = open("README.md").read()
 VERSION = "1.0.4"
-DOWNLOAD = "https://github.com/png261/pwy/archive/%s.tar.gz" % VERSION
+DOWNLOAD = "https://github.com/png261/pywalc/archive/%s.tar.gz" % VERSION
 
 setuptools.setup(
     name="pywalc",
@@ -15,7 +14,7 @@ setuptools.setup(
     long_description=LONG_DESC,
     keywords="pywalc wal colorscheme terminal-emulators changing-colorschemes",
     license="MIT",
-    url="https://github.com/png261/pwy",
+    url="https://github.com/png261/pywalc",
     download_url=DOWNLOAD,
     classifiers=[
         "Environment :: X11 Applications",
@@ -33,7 +32,8 @@ setuptools.setup(
         "pycloudflared>=0.2.0",
         "Jinja2>=3.1.2",
         "python-multipart>=0.0.6",
+        "qrcode>=7.4.2",
     ],
     include_package_data=True,
-    zip_safe=False)
-
+    zip_safe=False,
+)

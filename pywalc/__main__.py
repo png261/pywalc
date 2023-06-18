@@ -13,11 +13,12 @@ def main():
     util.create_dir(WALLPAPER_DIR)
     util.copy_dir(WAL_FILE, BACKUP_FILE)
 
-    current_wallpaper = util.read_file(os.path.join(PYWALL_CACHE, 'wal'))[0]
-    util.copy_dir(current_wallpaper, os.path.join(WALLPAPER_DIR,'current'))
+    current_wallpaper = util.read_file(os.path.join(PYWALL_CACHE, "wal"))[0]
+    util.copy_dir(current_wallpaper, os.path.join(WALLPAPER_DIR, "current"))
 
-    server = Server()
+    server = Server(2601)
     server.run()
+
 
 if __name__ == "__main__":
     main()

@@ -1,7 +1,8 @@
 import os
-import json
 import pywal
 from .settings import MODULE_DIR
+from . import util
+
 
 class Theme:
     def __init__(self):
@@ -19,9 +20,6 @@ class Theme:
         return self.data
 
     def set(self, name, category):
-        themes_path = os.path.join(
-            MODULE_DIR, "colorschemes", category, name + ".json"
-        )
-        with open(themes_path) as file:
-            themes = json.loads(file.read())
+        themes_path = os.path.join(MODULE_DIR, "colorschemes", category, name + ".json")
+        themes = util.read_file_json(themes_path)
         return themes["colors"]

@@ -1,6 +1,9 @@
 import pywal
-from .settings import WAL
 from fastapi import Request
+
+from .settings import BACKUP_FILE, WAL
+from . import util
+
 
 class Color:
     def __init__(self):
@@ -11,7 +14,7 @@ class Color:
 
     async def update(self, colors: Request):
         self.data.update(await colors.json())
-        return self.data
+        return self.get()
 
     def load(self, wallpaper):
         colors = [self.data[name] for name in self.data]
@@ -19,4 +22,9 @@ class Color:
         pywal.export.every(data)
         pywal.sequences.send(data)
         pywal.reload.env()
-        return self.data
+        return self.get()
+
+    def reset(self):
+        backup = util.read_file_json(BACKUP_FILE)
+        self.data.clear()
+        self.data.update(backup["colors"])
