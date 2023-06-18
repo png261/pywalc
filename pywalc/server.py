@@ -10,7 +10,7 @@ from typing import List
 from uvicorn import run
 from pycloudflared import try_cloudflare
 
-from .settings import CACHE_DIR, OS
+from .settings import CACHE_DIR, MODULE_DIR, OS
 from .colors import Color
 from .theme import Theme
 from .wallpaper import Wallpaper
@@ -57,14 +57,15 @@ class Server:
         )
 
         self.server.mount("/cache", StaticFiles(directory=CACHE_DIR), name="cache")
-
-        static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
-        self.server.mount("/static", StaticFiles(directory=static_dir), name="static")
-
-        templates_dir = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)), "templates"
+        self.server.mount(
+            "/static",
+            StaticFiles(directory=os.path.join(MODULE_DIR, "static")),
+            name="static",
         )
-        self.templates = Jinja2Templates(directory=templates_dir)
+
+        self.templates = Jinja2Templates(
+            directory=os.path.join(MODULE_DIR, "templates")
+        )
 
         self._setup_routes()
 

@@ -1,6 +1,6 @@
 import os
 import pywal
-from .settings import MODULE_DIR
+from .settings import PYWAL_MODULE_DIR
 from . import util
 
 
@@ -20,6 +20,6 @@ class Theme:
         return self.data
 
     def set(self, name, category):
-        themes_path = os.path.join(MODULE_DIR, "colorschemes", category, name + ".json")
+        themes_path = os.path.join(PYWAL_MODULE_DIR, "colorschemes", category, name + ".json")
         themes = util.read_file_json(themes_path)
         return themes["colors"]

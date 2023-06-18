@@ -1,13 +1,13 @@
 import pywal
 from fastapi import Request
 
-from .settings import BACKUP_FILE, WAL
+from .settings import BACKUP_FILE, PYWAL_DATA
 from . import util
 
 
 class Color:
     def __init__(self):
-        self.data = WAL["colors"]
+        self.data = PYWAL_DATA["colors"]
 
     def get(self):
         return self.data
