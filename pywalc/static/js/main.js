@@ -1,28 +1,37 @@
-import * as DATA from './data.js'
-import Sys from './Sys.js'
-import Color from './Color.js'
-import Theme from './Theme.js'
+import System from './System.js'
 import Wallpaper from './Wallpaper.js'
+import Theme from './Theme.js'
+import Color from './Color.js'
 import Actions from './Actions.js'
 
+
 function render() {
-    Color.updateCssVar()
-    Wallpaper.updateCssVar()
+    Color.updateCss()
+    Wallpaper.updateCss()
     Wallpaper.render()
-    Sys.render()
+    System.render()
     Color.render()
     Theme.render()
 }
 
-function events() {
-    Wallpaper.events()
-    Theme.events()
-    Color.events()
-    Actions.events()
+function handleEvents() {
+    Wallpaper.handleEvents()
+    Color.handleEvents()
+    Theme.handleEvents()
+    Actions.handleEvents()
 }
 
-; (async function run() {
-    await DATA.init()
+async function init() {
+    await System.init()
+    await Color.init()
+    await Wallpaper.init()
+    await Theme.init()
+    Actions.init()
+}
+
+async function main() {
+    await init()
+    handleEvents()
     render()
-    events()
-})()
+}
+main()

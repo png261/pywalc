@@ -1,39 +1,47 @@
-import { SYS, WALLPAPER, COLOR } from './data.js'
-import { $ } from './helper.js'
-import Color from './Color.js'
+import { $ } from './util.js'
 import Wallpaper from './Wallpaper.js'
+import Color from './Color.js'
+import System from './System.js'
 
-const $reset = $('.action__reset')
-const $change = $('.action__change')
 
-function events() {
-    async function reset() {
-        await SYS.reset()
-
-        await WALLPAPER.apply()
-        await COLOR.apply()
-
-        Color.updateCssVar()
-        Wallpaper.updateCssVar()
-
-        Wallpaper.active()
-        Color.render()
+const Actions = new class {
+    init() {
+        this.setupHTML()
     }
-    $reset.addEventListener('click', reset)
 
-    async function change() {
-        await WALLPAPER.update()
-        await COLOR.update()
-
-        await WALLPAPER.apply()
-        await COLOR.apply()
-
-        Color.updateCssVar()
-        Wallpaper.updateCssVar()
+    setupHTML() {
+        this.$btn_reset = $('.action__reset')
+        this.$btn_change = $('.action__change')
     }
-    $change.addEventListener('click', change)
+
+    handleEvents() {
+        this.$btn_reset.addEventListener('click', async function reset() {
+            await System.reset()
+
+            await Wallpaper.apply()
+            await Color.apply()
+
+            Color.updateCss()
+            Wallpaper.updateCss()
+
+            Wallpaper.updateActiveElement()
+            Color.render()
+        })
+
+        this.$btn_change.addEventListener('click',
+            async function change() {
+                await Wallpaper.update()
+                await Color.update()
+
+                await Wallpaper.apply()
+                await Color.apply()
+
+                Color.updateCss()
+                Wallpaper.updateCss()
+            }
+        )
+    }
 }
 
-export default {
-    events,
-}
+export default Actions
+
