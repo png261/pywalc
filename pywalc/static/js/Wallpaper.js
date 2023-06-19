@@ -1,4 +1,3 @@
-import { BASE_URL } from './api.js'
 import { $, $$, setCssVar } from './helper.js'
 import { WALLPAPER } from './data.js'
 
@@ -13,7 +12,7 @@ function active(id = WALLPAPER.current) {
 }
 
 function img(id) {
-    return `url(${BASE_URL}/cache/wallpapers/${id})`
+    return `url(/cache/wallpapers/${id})`
 }
 
 window.changeWallpaper = (id) => {

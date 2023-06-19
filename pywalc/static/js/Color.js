@@ -19,7 +19,7 @@ function render(colors = COLOR.get()) {
 
 function events() {
     $inputs.forEach((input) =>
-        input.addEventListener('input', function () {
+        input.addEventListener('input', function() {
             COLOR.put(this)
         })
     )

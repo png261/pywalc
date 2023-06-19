@@ -87,10 +87,10 @@ class Server:
             return self.wallpaper.get_colors(id)
 
         @self.server.post("/wallpaper", tags=["wallpaper"])
-        async def upload_wallpaper(files: List[UploadFile] = File(...)):
+        async def upload_wallpapers(files: List[UploadFile] = File(...)):
             return await self.wallpaper.upload(files)
 
-        @self.server.get("/wallpaper/load", tags=["wallpaper"])
+        @self.server.get("/wallpaper/apply", tags=["wallpaper"])
         def apply_wallpaper():
             return self.wallpaper.apply()
 
@@ -102,7 +102,7 @@ class Server:
         async def update_color(colors: Request):
             return await self.color.update(colors)
 
-        @self.server.get("/color/load", tags=["color"])
+        @self.server.get("/color/apply", tags=["color"])
         def apply_color():
             return self.color.apply(self.wallpaper.get_current())
 

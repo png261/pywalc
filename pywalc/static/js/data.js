@@ -19,8 +19,8 @@ class Wallpaper {
     async upload(imgs) {
         return await API.upload('wallpaper', imgs)
     }
-    async load() {
-        const { current, list } = await API.get('wallpaper/load')
+    async apply() {
+        const { current, list } = await API.get('wallpaper/apply')
         this.current = current
         this.list = list
     }
@@ -53,8 +53,8 @@ class Color {
     async update() {
         await API.put('color', this.colors)
     }
-    async load() {
-        this.colors = await API.get('color/load')
+    async apply() {
+        this.colors = await API.get('color/apply')
     }
 }
 

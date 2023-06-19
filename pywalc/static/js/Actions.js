@@ -10,8 +10,8 @@ function events() {
     async function reset() {
         await SYS.reset()
 
-        await WALLPAPER.load()
-        await COLOR.load()
+        await WALLPAPER.apply()
+        await COLOR.apply()
 
         Color.updateCssVar()
         Wallpaper.updateCssVar()
@@ -25,8 +25,8 @@ function events() {
         await WALLPAPER.update()
         await COLOR.update()
 
-        await WALLPAPER.load()
-        await COLOR.load()
+        await WALLPAPER.apply()
+        await COLOR.apply()
 
         Color.updateCssVar()
         Wallpaper.updateCssVar()
