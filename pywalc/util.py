@@ -1,8 +1,6 @@
 import json
-import logging
 import os
 import shutil
-import sys
 import qrcode
 import io
 import uuid
@@ -35,7 +33,7 @@ def save_file(data, export_file, mode="w"):
         with open(export_file, mode) as file:
             file.write(data)
     except PermissionError:
-        logging.warning("Couldn't write to %s.", export_file)
+        print("Couldn't write to %s.", export_file)
 
 
 def save_file_json(data, export_file):
@@ -49,22 +47,6 @@ def save_file_json(data, export_file):
 def create_dir(directory):
     """Alias to create the cache dir."""
     os.makedirs(directory, exist_ok=True)
-
-
-def setup_logging():
-    """Logging config."""
-    logging.getLogger("pywal").setLevel(logging.WARNING)
-
-    logging.basicConfig(
-        format=(
-            "[%(levelname)s\033[0m] " "\033[1;31m%(module)s\033[0m: " "%(message)s"
-        ),
-        level=logging.INFO,
-        stream=sys.stdout,
-    )
-    logging.addLevelName(logging.ERROR, "\033[1;31mE")
-    logging.addLevelName(logging.INFO, "\033[1;32mI")
-    logging.addLevelName(logging.WARNING, "\033[1;33mW")
 
 
 def copy_dir(source, dest):

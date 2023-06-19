@@ -16,7 +16,6 @@ class App:
         self.port = 2601
 
     def setup(self):
-        util.setup_logging()
         self._setup_create_dir()
         self._setup_pywal_data()
 
