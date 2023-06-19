@@ -20,6 +20,8 @@ class Theme:
         return self.data
 
     def set(self, name, category):
-        themes_path = os.path.join(PYWAL_MODULE_DIR, "colorschemes", category, name + ".json")
+        themes_path = os.path.join(
+            PYWAL_MODULE_DIR, "colorschemes", category, name + ".json"
+        )
         themes = util.read_file_json(themes_path)
         return themes["colors"]
