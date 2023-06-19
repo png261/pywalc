@@ -91,8 +91,8 @@ class Server:
             return await self.wallpaper.upload(files)
 
         @self.server.get("/wallpaper/load", tags=["wallpaper"])
-        def load_wallpaper():
-            return self.wallpaper.load()
+        def apply_wallpaper():
+            return self.wallpaper.apply()
 
         @self.server.get("/color", tags=["color"])
         def get_colors():
@@ -103,16 +103,16 @@ class Server:
             return await self.color.update(colors)
 
         @self.server.get("/color/load", tags=["color"])
-        def load_colors():
-            return self.color.load(self.wallpaper.get_current())
+        def apply_color():
+            return self.color.apply(self.wallpaper.get_current())
 
         @self.server.get("/theme", tags=["theme"])
         def get_themes():
             return self.theme.get()
 
         @self.server.get("/theme/{category}/{name}", tags=["theme"])
-        def set_theme(name, category):
-            return self.theme.set(name, category)
+        def get_theme_color(name, category):
+            return self.theme.get_color(name, category)
 
         @self.server.get("/sys", tags=["system"])
         def get_system_info():

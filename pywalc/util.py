@@ -1,6 +1,3 @@
-"""
-Misc helper functions.
-"""
 import json
 import logging
 import os
@@ -8,6 +5,7 @@ import shutil
 import sys
 import qrcode
 import io
+import uuid
 
 
 def read_file(input_file):
@@ -55,6 +53,8 @@ def create_dir(directory):
 
 def setup_logging():
     """Logging config."""
+    logging.getLogger("pywal").setLevel(logging.WARNING)
+
     logging.basicConfig(
         format=(
             "[%(levelname)s\033[0m] " "\033[1;31m%(module)s\033[0m: " "%(message)s"
@@ -74,12 +74,14 @@ def copy_dir(source, dest):
         pass
 
 
-def show_ascii_qrcode(
-    url,
-):
+def show_ascii_qrcode(url):
     qr = qrcode.QRCode()
     qr.add_data(url)
     f = io.StringIO()
     qr.print_ascii(out=f)
     f.seek(0)
     print(f.read())
+
+
+def get_random_id():
+    return str(uuid.uuid1().hex)

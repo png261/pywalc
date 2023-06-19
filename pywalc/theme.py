@@ -1,27 +1,12 @@
-import os
-import pywal
-from .settings import PYWAL_MODULE_DIR
-from . import util
+from . import pywal_util
 
 
 class Theme:
     def __init__(self):
-        dark_themes = [
-            theme.name.replace(".json", "") for theme in pywal.theme.list_themes()
-        ]
-        light_themes = [
-            theme.name.replace(".json", "")
-            for theme in pywal.theme.list_themes(dark=False)
-        ]
-
-        self.data = {"dark": dark_themes, "light": light_themes}
+        self.data = pywal_util.get_theme_list()
 
     def get(self):
         return self.data
 
-    def set(self, name, category):
-        themes_path = os.path.join(
-            PYWAL_MODULE_DIR, "colorschemes", category, name + ".json"
-        )
-        themes = util.read_file_json(themes_path)
-        return themes["colors"]
+    def get_color(self, name, category):
+        return pywal_util.get_theme(name, category)["colors"]

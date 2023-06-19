@@ -3,13 +3,11 @@ import argparse
 
 from .server import Server
 from . import util
+from . import pywal_util
 from .settings import (
     __version__,
-    PYWAL_FILE_PATH,
-    BACKUP_FILE,
     WALLPAPER_DIR,
     CACHE_DIR,
-    PYWAL_CURRENT_WALLPAPER,
 )
 
 
@@ -20,15 +18,17 @@ class App:
     def setup(self):
         util.setup_logging()
         self._setup_create_dir()
-        self._setup_copy_pywal_data()
+        self._setup_pywal_data()
 
     def _setup_create_dir(self):
         util.create_dir(CACHE_DIR)
         util.create_dir(WALLPAPER_DIR)
 
-    def _setup_copy_pywal_data(self):
-        util.copy_dir(PYWAL_FILE_PATH, BACKUP_FILE)
-        util.copy_dir(PYWAL_CURRENT_WALLPAPER, os.path.join(WALLPAPER_DIR, "current"))
+    def _setup_pywal_data(self):
+        pywal_util.setup_backup()
+        util.copy_dir(
+            pywal_util.get_current_wallpaper(), os.path.join(WALLPAPER_DIR, "current")
+        )
 
     def parse_args(self):
         parser = self._get_args()
