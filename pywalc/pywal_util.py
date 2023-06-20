@@ -5,7 +5,12 @@ Pywal helper functions.
 import os
 import pywal
 
-from .settings import BACKUP_FILE, PYWAL_DATA_FILE, PYWALL_CACHE, PYWAL_MODULE_DIR
+from .settings import (
+    BACKUP_FILE,
+    PYWAL_DATA_FILE,
+    PYWALL_CACHE,
+    PYWAL_MODULE_DIR,
+)
 from . import util
 
 
@@ -60,7 +65,8 @@ def get_theme_list():
         theme.name.replace(".json", "") for theme in pywal.theme.list_themes()
     ]
     light_themes = [
-        theme.name.replace(".json", "") for theme in pywal.theme.list_themes(dark=False)
+        theme.name.replace(".json", "")
+        for theme in pywal.theme.list_themes(dark=False)
     ]
     return {"dark": dark_themes, "light": light_themes}
 

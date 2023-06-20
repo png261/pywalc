@@ -5,7 +5,7 @@ pywalc - setup.py
 import setuptools
 
 
-with open('README.md') as file:
+with open("README.md") as file:
     LONG_DESC = file.read()
 
 VERSION = "0.2.1"

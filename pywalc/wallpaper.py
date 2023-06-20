@@ -50,7 +50,9 @@ class Wallpaper:
         for file in files:
             filename = util.get_random_id()
             util.save_file(
-                await file.read(), os.path.join(WALLPAPER_DIR, filename), mode="wb"
+                await file.read(),
+                os.path.join(WALLPAPER_DIR, filename),
+                mode="wb",
             )
             images.append(filename)
 

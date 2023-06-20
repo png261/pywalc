@@ -69,7 +69,9 @@ class Server:
             allow_headers=["*"],
         )
 
-        self.server.mount("/cache", StaticFiles(directory=CACHE_DIR), name="cache")
+        self.server.mount(
+            "/cache", StaticFiles(directory=CACHE_DIR), name="cache"
+        )
         self.server.mount(
             "/static",
             StaticFiles(directory=os.path.join(MODULE_DIR, "static")),
@@ -85,7 +87,9 @@ class Server:
 
         @self.server.get("/", response_class=HTMLResponse)
         async def home_page(request: Request):
-            return self.templates.TemplateResponse("index.html", {"request": request})
+            return self.templates.TemplateResponse(
+                "index.html", {"request": request}
+            )
 
         @self.server.get("/wallpaper", tags=["wallpaper"])
         def get_wallpapers():

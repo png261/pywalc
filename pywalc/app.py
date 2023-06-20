@@ -36,7 +36,8 @@ class App:
         """Setup Pywal data"""
         pywal_util.setup_backup()
         util.copy_file(
-            pywal_util.get_current_wallpaper(), os.path.join(WALLPAPER_DIR, "current")
+            pywal_util.get_current_wallpaper(),
+            os.path.join(WALLPAPER_DIR, "current"),
         )
 
     def parse_args(self):
@@ -51,7 +52,9 @@ class App:
         description = "pywalc - Pywal client"
         arg = argparse.ArgumentParser(description=description)
 
-        arg.add_argument("-v", action="store_true", help='print "pywalc" version.')
+        arg.add_argument(
+            "-v", action="store_true", help='print "pywalc" version.'
+        )
 
         arg.add_argument("-p", metavar="port", help="port to start Api server")
 
