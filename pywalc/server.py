@@ -1,12 +1,16 @@
+"""
+Server
+"""
+
 import os
 import socket
 
+from typing import List
 from fastapi import FastAPI, Request, File, UploadFile
 from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from typing import List
 from uvicorn import run
 from pycloudflared import try_cloudflare
 
@@ -18,11 +22,20 @@ from . import util
 
 
 class Server:
+    """Server"""
+
     def __init__(self, port):
+        """Initialize server"""
         self.port = port
         self.wallpaper = Wallpaper()
         self.theme = Theme()
         self.color = Color()
+        self.online_site = None
+        self._setup_api()
+        self._setup_routes()
+
+    def _setup_api(self):
+        """Setup FastAPI"""
         self.server = FastAPI(
             title="Pywalc",
             description="Control your pywal",
@@ -67,9 +80,9 @@ class Server:
             directory=os.path.join(MODULE_DIR, "templates")
         )
 
-        self._setup_routes()
-
     def _setup_routes(self):
+        """Set FastAPI routes"""
+
         @self.server.get("/", response_class=HTMLResponse)
         async def home_page(request: Request):
             return self.templates.TemplateResponse("index.html", {"request": request})
@@ -78,13 +91,13 @@ class Server:
         def get_wallpapers():
             return self.wallpaper.get()
 
-        @self.server.put("/wallpaper/{id}", tags=["wallpaper"])
-        def set_wallpaper(id: str):
-            return self.wallpaper.set(id)
+        @self.server.put("/wallpaper/{wallpaper_id}", tags=["wallpaper"])
+        def set_wallpaper(wallpaper_id: str):
+            return self.wallpaper.set(wallpaper_id)
 
-        @self.server.get("/wallpaper/{id}/color", tags=["wallpaper"])
-        def get_wallpaper_colors(id):
-            return self.wallpaper.get_colors(id)
+        @self.server.get("/wallpaper/{wallpaper_id}/color", tags=["wallpaper"])
+        def get_wallpaper_colors(wallpaper_id):
+            return self.wallpaper.get_colors(wallpaper_id)
 
         @self.server.post("/wallpaper", tags=["wallpaper"])
         async def upload_wallpapers(files: List[UploadFile] = File(...)):
@@ -111,8 +124,8 @@ class Server:
             return self.theme.get()
 
         @self.server.get("/theme/{category}/{name}", tags=["theme"])
-        def get_theme_color(name, category):
-            return self.theme.get_color(name, category)
+        def get_theme_color(category, name):
+            return self.theme.get_color(category, name)
 
         @self.server.get("/sys", tags=["system"])
         def get_system_info():
@@ -124,14 +137,21 @@ class Server:
             self.wallpaper.reset()
 
     def _start_localhost(self):
-        print(" * Localhost: http://127.0.0.1:{port}".format(port=self.port))
+        """Start FastAPI localhost server"""
+        print(f" * Localhost: http://127.0.0.1:{self.port}")
         run(self.server, host="127.0.0.1", port=self.port, log_level="error")
 
-    def _start_cloudfare_tunnel(self):
+    def _start_cloudflare_tunnel(self):
+        """Start Cloudflare tunnel"""
         self.online_site = try_cloudflare(port=self.port, verbose=False).tunnel
-        print(" * Online: {url}".format(url=self.online_site))
+        self._show_cloudfare_tunnel_url()
+
+    def _show_cloudfare_tunnel_url(self):
+        """Display the online URL with QR code"""
+        print(f" * Online: {self.online_site}")
         util.show_ascii_qrcode(self.online_site)
 
     def run(self):
-        self._start_cloudfare_tunnel()
+        """Run server"""
+        self._start_cloudflare_tunnel()
         self._start_localhost()

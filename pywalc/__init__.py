@@ -1,9 +1,12 @@
+"""
+Created by Phuong Nguyen
+"""
+
 from .settings import __version__
 from . import server
 from . import colors
 from . import theme
 from . import wallpaper
-from . import theme
 
 __all__ = [
     "__version__",

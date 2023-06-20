@@ -1,8 +1,15 @@
+"""
+pywalc - setup.py
+"""
+
 import setuptools
 
-LONG_DESC = open("README.md").read()
+
+with open('README.md') as file:
+    LONG_DESC = file.read()
+
 VERSION = "0.2.1"
-DOWNLOAD = "https://github.com/png261/pywalc/archive/%s.tar.gz" % VERSION
+DOWNLOAD = f"https://github.com/png261/pywalc/archive/{VERSION}.tar.gz"
 
 setuptools.setup(
     name="pywalc",
