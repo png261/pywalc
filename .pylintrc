@@ -1,0 +1,16 @@
+[BASIC]
+good-names=i,j,k,n,x,y,fg,bg,r,g,b,i3,r1,r2,r3,g1,g2,g3,b1,b2,b3,h,s,v,l
+
+[MESSAGES CONTROL]
+# inconsistent-return-statements:
+#   Disabled as it's a false-positive and a bug in pylint.
+# too-many-branches:
+#   Disabled as it's a non-issue and only occurs in the
+#   process_args() function.
+# too-many-statements:
+#   Disabled as it's a non-issue and only occurs in the
+#   process_args() function.
+disable=inconsistent-return-statements,too-many-branches,too-many-statements,too-many-return-statements
+
+[SIMILARITIES]
+ignore-imports=y
