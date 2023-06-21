@@ -77,4 +77,5 @@ class App:
     def run(self):
         """Run app"""
         server = Server(self.port)
+        server.setup()
         server.run()

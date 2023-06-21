@@ -31,6 +31,9 @@ class Server:
         self.theme = Theme()
         self.color = Color()
         self.online_site = None
+
+    def setup(self):
+        """Setup server"""
         self._setup_api()
         self._setup_routes()
 

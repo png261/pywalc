@@ -18,5 +18,6 @@ install:
     - pip install flake8 pylint
 
 script:
-    - flake8 pywalc setup.py
-    - pylint pywalc setup.py
+    - flake8 pywalc tests setup.py
+    - pylint pywalc tests setup.py
+    - python setup.py test

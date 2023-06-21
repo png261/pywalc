@@ -44,6 +44,7 @@ setuptools.setup(
         "qrcode>=7.4.2",
         "argparse>=1.4.0 ",
     ],
+    test_suite="tests",
     include_package_data=True,
     zip_safe=False,
 )
