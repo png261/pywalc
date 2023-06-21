@@ -43,6 +43,7 @@ setuptools.setup(
         "python-multipart>=0.0.6",
         "qrcode>=7.4.2",
         "argparse>=1.4.0 ",
+        "httpx>=0.24.1",
     ],
     test_suite="tests",
     include_package_data=True,
