@@ -5,11 +5,11 @@ App
 import os
 import argparse
 
+import pywalc
 from .server import Server
 from . import util
 from . import pywal_util
 from .settings import (
-    __version__,
     WALLPAPER_DIR,
     CACHE_DIR,
 )
@@ -65,7 +65,7 @@ class App:
         args = parser.parse_args()
 
         if args.v:
-            parser.exit(0, f"pywalc {__version__}\n")
+            parser.exit(0, f"pywalc {pywalc.__version__}\n")
 
     def _parse_args(self, parser):
         """Process args"""

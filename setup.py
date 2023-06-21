@@ -3,12 +3,13 @@ pywalc - setup.py
 """
 
 import setuptools
+import pywalc
 
 
 with open("README.md") as file:
     LONG_DESC = file.read()
 
-VERSION = "0.2.1"
+VERSION = pywalc.__version__
 DOWNLOAD = f"https://github.com/png261/pywalc/archive/{VERSION}.tar.gz"
 
 setuptools.setup(

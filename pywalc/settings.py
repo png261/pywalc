@@ -6,7 +6,6 @@ import os
 import platform
 import pywal
 
-__version__ = "0.2.1"
 
 HOME = os.getenv("HOME", os.getenv("USERPROFILE"))
 XDG_CACHE_DIR = os.getenv("XDG_CACHE_HOME", os.path.join(HOME, ".cache"))
