@@ -35,7 +35,7 @@ setuptools.setup(
     entry_points={"console_scripts": ["pywalc=pywalc.__main__:main"]},
     python_requires=">=3.5",
     install_requires=[
-        "pywal>=3.3.0",
+        "pywal16>=3.7.2",
         "fastapi>=0.97.0",
         "uvicorn>=0.22.0",
         "pycloudflared>=0.2.0",
